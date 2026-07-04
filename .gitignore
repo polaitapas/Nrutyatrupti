@@ -1,0 +1,20 @@
+# dependencies
+/node_modules
+
+# next.js build output
+/.next
+/out
+
+# misc
+.DS_Store
+*.log
+.env*
+
+# netlify
+.netlify
+
+# legacy static site (superseded by the Next.js app)
+/index.html
+/css
+/js
+/DESIGN.md
