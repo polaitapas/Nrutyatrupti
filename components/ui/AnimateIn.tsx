@@ -1,5 +1,5 @@
 'use client'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants, useReducedMotion } from 'framer-motion'
 import { ReactNode, CSSProperties } from 'react'
 
 interface AnimateInProps {
@@ -13,8 +13,8 @@ interface AnimateInProps {
 
 const variants: Record<string, Variants> = {
   fadeUp: {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 40, scale: 0.98 },
+    visible: { opacity: 1, y: 0, scale: 1 },
   },
   fadeIn: {
     hidden: { opacity: 0 },
@@ -42,6 +42,19 @@ export default function AnimateIn({
   once = true,
   style,
 }: AnimateInProps) {
+  const reduce = useReducedMotion()
+
+  // Respect prefers-reduced-motion: render fully visible, no transform/opacity
+  // animation. This also guarantees content can never get stuck hidden for
+  // these users.
+  if (reduce) {
+    return (
+      <div className={className} style={style}>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <motion.div
       className={className}
@@ -50,7 +63,7 @@ export default function AnimateIn({
       whileInView="visible"
       viewport={{ once, margin: '-80px' }}
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         delay,
         ease: [0.16, 1, 0.3, 1],
       }}
@@ -64,7 +77,7 @@ export default function AnimateIn({
 export function AnimateStagger({
   children,
   className,
-  staggerDelay = 0.1,
+  staggerDelay = 0.05,
   style,
 }: {
   children: ReactNode
@@ -72,6 +85,16 @@ export function AnimateStagger({
   staggerDelay?: number
   style?: CSSProperties
 }) {
+  const reduce = useReducedMotion()
+
+  if (reduce) {
+    return (
+      <div className={className} style={style}>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <motion.div
       className={className}
@@ -100,6 +123,16 @@ export function AnimateStaggerItem({
   variant?: 'fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'scale'
   style?: CSSProperties
 }) {
+  const reduce = useReducedMotion()
+
+  if (reduce) {
+    return (
+      <div className={className} style={style}>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <motion.div
       className={className}
@@ -108,7 +141,7 @@ export function AnimateStaggerItem({
         ...variants[variant],
         visible: {
           ...(variants[variant].visible as object),
-          transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+          transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
         },
       }}
     >

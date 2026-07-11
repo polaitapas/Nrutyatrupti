@@ -6,26 +6,43 @@ import { siteConfig } from '@/lib/data/site'
 
 export default function InstagramReels() {
   const loaded = useRef(false)
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (loaded.current) return
-    loaded.current = true
-    const script = document.createElement('script')
-    script.src = 'https://www.instagram.com/embed.js'
-    script.async = true
-    document.body.appendChild(script)
-    return () => {
-      document.body.removeChild(script)
+    const section = sectionRef.current
+    if (!section) return
+
+    const loadEmbedScript = () => {
+      if (loaded.current) return
+      loaded.current = true
+      const script = document.createElement('script')
+      script.src = 'https://www.instagram.com/embed.js'
+      script.async = true
+      document.body.appendChild(script)
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          loadEmbedScript()
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '400px' }
+    )
+    observer.observe(section)
+
+    return () => observer.disconnect()
   }, [])
 
   return (
     <section
+      ref={sectionRef}
       className="relative overflow-hidden py-section bg-heritage-light"
       aria-label="Instagram reels from Nrutyatrupti"
     >
       <div className="wrap relative z-10">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <AnimateIn>
             <span className="eyebrow justify-center">Watch Us Perform</span>
           </AnimateIn>
@@ -42,15 +59,16 @@ export default function InstagramReels() {
         </div>
 
         <AnimateStagger
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start"
-          staggerDelay={0.1}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch"
+          staggerDelay={0.05}
         >
           {siteConfig.instagramReels.map((reel) => (
             <AnimateStaggerItem key={reel.id} variant="fadeUp">
               <div className="card-lift-sm">
               <div
-                className="overflow-hidden"
+                className="instagram-embed-square overflow-hidden relative"
                 style={{
+                  aspectRatio: '1 / 1',
                   border: '1px solid rgba(14,75,65,0.15)',
                   clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)',
                 }}
@@ -86,7 +104,7 @@ export default function InstagramReels() {
           ))}
         </AnimateStagger>
 
-        <AnimateIn delay={0.4} className="text-center mt-10">
+        <AnimateIn delay={0.4} className="text-center mt-8">
           <a
             href={siteConfig.social.instagram}
             target="_blank"

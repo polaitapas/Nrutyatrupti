@@ -3,28 +3,42 @@ import Link from 'next/link'
 import { ArrowRight, Award, Star } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import { founderData } from '@/lib/data/site'
+import { achievementTimeline } from '@/lib/data/achievements'
+
+const findEvent = (year: string, title?: string) => {
+  const y = achievementTimeline.find((t) => t.year === year)
+  const event = title ? y?.events.find((e) => e.title === title) : y?.events[0]
+  return event?.title ?? ''
+}
+
+const guruMilestones = [
+  { year: '2007', title: 'First stepped onto the stage' },
+  { year: '2010', title: findEvent('2010') },
+  { year: '2018', title: findEvent('2018') },
+  { year: '2025', title: findEvent('2025', 'Guru Shree Samman') },
+]
 
 export default function FounderHighlight() {
   return (
     <section
       className="relative overflow-hidden py-section bg-heritage-ivory"
-      aria-label="Our Founder and Guru"
+      aria-label="Our Founder and Mentor"
     >
       <div className="wrap relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <AnimateIn>
             <span className="eyebrow">
-              Guided by Masters
+              <span className="indic">गुरु परम्परा</span> · Guided by Masters
             </span>
           </AnimateIn>
           <AnimateIn delay={0.15}>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
-              The <em>Guru</em>
+              The <em>Founder</em>
             </h2>
           </AnimateIn>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <AnimateIn variant="slideRight" className="lg:order-2">
             <div className="relative max-w-md mx-auto">
               <div
@@ -83,6 +97,24 @@ export default function FounderHighlight() {
               </p>
             </AnimateIn>
 
+            <AnimateIn delay={0.25}>
+              <blockquote
+                className="mt-7 pl-5 border-l-2"
+                style={{ borderColor: 'var(--gold)' }}
+              >
+                <p
+                  className="font-display italic font-light leading-snug"
+                  style={{ fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', color: 'var(--maroon)' }}
+                >
+                  &ldquo;Odissi is not something you perform. It is something you become —
+                  one mudra, one breath, one guru at a time.&rdquo;
+                </p>
+                <span className="mt-2 block text-xs tracking-[0.15em] uppercase font-body" style={{ color: '#8B7355' }}>
+                  Guiding Philosophy
+                </span>
+              </blockquote>
+            </AnimateIn>
+
             <AnimateIn delay={0.3}>
               <ul className="mt-7 space-y-3" role="list">
                 {founderData.credentials.map((cred) => (
@@ -127,6 +159,35 @@ export default function FounderHighlight() {
               </div>
             </AnimateIn>
 
+            <AnimateIn delay={0.45}>
+              <div className="mt-9 relative pl-1">
+                <div
+                  className="absolute left-1 top-2 right-0 h-px hidden sm:block"
+                  style={{ background: 'rgba(201,147,58,0.25)' }}
+                  aria-hidden="true"
+                />
+                <ol className="flex flex-wrap gap-x-8 gap-y-4" role="list">
+                  {guruMilestones.map((m) => (
+                    <li key={m.year} className="relative min-w-[7rem]">
+                      <div className="flex items-center gap-2 sm:mb-1.5">
+                        <span
+                          className="hidden sm:block w-2 h-2 rounded-full flex-shrink-0"
+                          style={{ background: 'var(--gold)' }}
+                          aria-hidden="true"
+                        />
+                        <span className="font-display text-lg" style={{ color: 'var(--gold-dark)' }}>
+                          {m.year}
+                        </span>
+                      </div>
+                      <span className="font-body text-xs leading-snug" style={{ color: '#6B5443' }}>
+                        {m.title}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </AnimateIn>
+
             <AnimateIn delay={0.5}>
               <div className="mt-9 flex items-center gap-2 mb-6">
                 <Star size={12} className="text-gold fill-gold" aria-hidden="true" />
@@ -138,7 +199,7 @@ export default function FounderHighlight() {
                   On stage since 2007 · 50+ national performances
                 </span>
               </div>
-              <Link href="/founder" className="btn-primary group">
+              <Link href="/about" className="btn-primary group">
                 Read Full Biography
                 <ArrowRight
                   size={15}

@@ -2,15 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Mail, Phone, Instagram, Facebook } from 'lucide-react'
 import { siteConfig } from '@/lib/data/site'
+import EnquiryTrigger from '@/components/ui/EnquiryTrigger'
 
 const quickLinks = [
-  { href: '/about', label: 'About the Academy' },
-  { href: '/founder', label: 'Our Guru' },
-  { href: '/classes', label: 'Dance Classes' },
-  { href: '/achievements', label: 'Achievements' },
-  { href: '/events', label: 'Events & Camps' },
+  { href: '/about', label: 'About & Our Gurus' },
+  { href: '/classes', label: 'Classes & Achievements' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Enquire Now' },
 ]
 
 export default function Footer() {
@@ -23,8 +20,8 @@ export default function Footer() {
     >
       <div className="relative z-10">
         <div className="line-gold" />
-        <div className="wrap py-16 lg:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="wrap py-12 lg:py-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-2">
               <Link href="/" className="flex items-center gap-3 mb-6 group w-fit">
                 <div className="relative w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity flex-shrink-0">
@@ -55,12 +52,13 @@ export default function Footer() {
               <p className="font-display italic text-gold/40 text-base mb-6">
                 यतो हस्तस्ततो दृष्टिः
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 -ml-2">
                 <a
                   href={siteConfig.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-ivory/40 hover:text-gold transition-colors"
+                  className="flex items-center justify-center text-ivory/40 hover:text-gold transition-colors"
+                  style={{ minWidth: 36, minHeight: 36 }}
                   aria-label="Follow us on Instagram"
                 >
                   <Instagram size={18} />
@@ -69,7 +67,8 @@ export default function Footer() {
                   href={siteConfig.social.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-ivory/40 hover:text-gold transition-colors"
+                  className="flex items-center justify-center text-ivory/40 hover:text-gold transition-colors"
+                  style={{ minWidth: 36, minHeight: 36 }}
                   aria-label="Follow us on Facebook"
                 >
                   <Facebook size={18} />
@@ -92,6 +91,11 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <EnquiryTrigger className="font-body text-sm text-ivory/50 hover:text-ivory transition-colors">
+                    Enquire Now
+                  </EnquiryTrigger>
+                </li>
               </ul>
             </div>
 
@@ -135,10 +139,9 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href={`https://wa.me/${siteConfig.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
                     className="flex gap-3 items-center group"
+                    aria-label={`Call ${siteConfig.phone}`}
                   >
                     <Phone
                       size={15}
@@ -152,19 +155,50 @@ export default function Footer() {
                 </li>
               </ul>
 
-              <div className="mt-8 p-4 border border-white/10 rounded" style={{ background: 'rgba(201,147,58,0.06)' }}>
+              <a
+                href={siteConfig.address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 block overflow-hidden border border-white/10 hover:border-gold/30 transition-colors"
+                aria-label="Open Nrutyatrupti location in Google Maps"
+              >
+                <iframe
+                  src={siteConfig.address.mapsEmbedUrl}
+                  width="100%"
+                  height="140"
+                  style={{ border: 0, display: 'block', pointerEvents: 'none' }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Map showing Nrutyatrupti Dance Academy location in Kalinganagar, Bhubaneswar"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                />
+              </a>
+
+              <a
+                href={siteConfig.google.reviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="google-review-badge mt-6 block p-4 border border-white/10 rounded"
+                style={{ background: 'rgba(201,147,58,0.06)' }}
+              >
                 <div className="text-gold text-sm font-body font-medium mb-1">
                   ★★★★★ {siteConfig.google.rating}
                 </div>
                 <div className="text-ivory/40 text-xs font-body">
-                  {siteConfig.google.reviewCount} Google Reviews
+                  {siteConfig.google.reviewCount} Google Reviews — Leave yours
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
 
         <div className="line-gold" />
+        <div className="wrap pt-6 text-center">
+          <p className="font-display italic text-gold/50 text-sm">
+            ଶୁଭମ୍ ଭବତୁ · शुभम् भवतु — may grace walk with every dancer who begins here
+          </p>
+        </div>
         <div className="wrap py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-ivory/30 font-body">
             © {year} {siteConfig.fullName}. All rights reserved.

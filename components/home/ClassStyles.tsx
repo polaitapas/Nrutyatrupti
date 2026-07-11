@@ -3,6 +3,8 @@ import { ArrowRight } from 'lucide-react'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import { danceStyles } from '@/lib/data/classes'
 
+const preview = danceStyles.slice(0, 3)
+
 export default function ClassStyles() {
   return (
     <section
@@ -10,10 +12,10 @@ export default function ClassStyles() {
       aria-label="Dance styles taught at Nrutyatrupti"
     >
       <div className="wrap relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div>
             <AnimateIn>
-              <span className="eyebrow">What We Teach</span>
+              <span className="eyebrow"><span className="indic">ଆମେ କ'ଣ ଶିଖାଉ</span> · What We Teach</span>
             </AnimateIn>
             <AnimateIn delay={0.15}>
               <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
@@ -22,8 +24,8 @@ export default function ClassStyles() {
             </AnimateIn>
             <AnimateIn delay={0.25}>
               <p className="lede mt-4">
-                Classical and folk traditions of Odisha, taught with equal devotion — for the
-                stage, for certification, or simply for the love of it.
+                Classical and folk traditions of Odisha, taught with equal devotion. A glimpse
+                of three — the full curriculum has six, including online and certification tracks.
               </p>
             </AnimateIn>
           </div>
@@ -41,9 +43,9 @@ export default function ClassStyles() {
 
         <AnimateStagger
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          staggerDelay={0.08}
+          staggerDelay={0.05}
         >
-          {danceStyles.map((style) => (
+          {preview.map((style) => (
             <AnimateStaggerItem key={style.title} variant="fadeUp">
               <article
                 className="p-7 h-full flex flex-col card-lift group"

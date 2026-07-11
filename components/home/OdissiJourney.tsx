@@ -8,9 +8,9 @@ export default function OdissiJourney() {
       aria-label="The five movements of an Odissi recital"
     >
       <div className="wrap">
-        <div className="text-center mb-14 max-w-2xl mx-auto">
+        <div className="text-center mb-8 max-w-2xl mx-auto">
           <AnimateIn>
-            <span className="eyebrow">The Odissi Recital</span>
+            <span className="eyebrow">Odissi Philosophy</span>
           </AnimateIn>
           <AnimateIn delay={0.15}>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
@@ -19,13 +19,14 @@ export default function OdissiJourney() {
           </AnimateIn>
           <AnimateIn delay={0.25}>
             <p className="lede mt-4 mx-auto text-center" style={{ color: '#6B5443' }}>
-              Every Odissi recital follows a sacred arc — from the first invocation to the final
-              dissolution of self. Our curriculum walks students through each stage.
+              Odissi is danced as philosophy, not spectacle. Every recital follows a sacred arc —
+              from the first invocation to the final dissolution of self — and that same arc
+              shapes how each student is trained, one stage at a time.
             </p>
           </AnimateIn>
         </div>
 
-        <AnimateStagger className="relative" staggerDelay={0.12}>
+        <AnimateStagger className="relative" staggerDelay={0.05}>
           <div
             className="absolute left-8 top-0 bottom-0 w-px hidden lg:block"
             style={{ background: 'linear-gradient(to bottom, transparent, rgba(201,147,58,0.3), transparent)' }}

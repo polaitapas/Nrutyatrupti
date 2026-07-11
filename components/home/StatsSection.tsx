@@ -1,8 +1,15 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
-import { statsData } from '@/lib/data/achievements'
-import AnimateIn from '@/components/ui/AnimateIn'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { statsData, achievementTimeline } from '@/lib/data/achievements'
+import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
+
+const timelineHighlights = achievementTimeline
+  .flatMap((y) => y.events.map((e) => ({ year: y.year, ...e })))
+  .filter((e) => e.featured || e.title === 'Mukteshwar Dance Festival')
+  .sort((a, b) => Number(b.year) - Number(a.year))
 
 function AnimatedNumber({ value, suffix }: { value: string; suffix: string }) {
   const [display, setDisplay] = useState('0')
@@ -33,7 +40,15 @@ function AnimatedNumber({ value, suffix }: { value: string; suffix: string }) {
   )
 }
 
-export default function StatsSection() {
+export default function StatsSection({
+  showRecognitionTeaser = true,
+}: {
+  /** The "A Decade of Recognition" highlight strip + "Full Timeline" link.
+   *  Disable when this component is mounted on the page that already shows
+   *  the full achievements timeline (e.g. /classes), to avoid showing the
+   *  same handful of highlighted years twice on one page. */
+  showRecognitionTeaser?: boolean
+}) {
   return (
     <section
       className="py-section-sm relative bg-heritage-deep"
@@ -71,6 +86,44 @@ export default function StatsSection() {
             </AnimateIn>
           ))}
         </div>
+
+        {showRecognitionTeaser && (
+          <div className="mt-10 pt-8 border-t border-white/10">
+            <AnimateIn>
+              <p className="text-center text-xs tracking-[0.2em] uppercase font-body text-ivory/40 mb-6">
+                A Decade of Recognition
+              </p>
+            </AnimateIn>
+            <AnimateStagger
+              className="flex flex-wrap justify-center gap-x-10 gap-y-6"
+              staggerDelay={0.05}
+            >
+              {timelineHighlights.map((e) => (
+                <AnimateStaggerItem key={`${e.year}-${e.title}`} variant="fadeUp">
+                  <div className="text-center max-w-[9rem]">
+                    <div className="font-display text-2xl" style={{ color: 'var(--gold)' }}>
+                      {e.year}
+                    </div>
+                    <div className="mt-1 font-body text-xs leading-snug text-ivory/60">
+                      {e.title}
+                    </div>
+                  </div>
+                </AnimateStaggerItem>
+              ))}
+            </AnimateStagger>
+            <AnimateIn delay={0.2}>
+              <div className="text-center mt-9">
+                <Link
+                  href="/classes#achievements"
+                  className="font-body text-xs tracking-[0.15em] uppercase text-gold hover:text-gold-light transition-colors inline-flex items-center gap-2"
+                >
+                  Full Timeline of Achievements
+                  <ArrowRight size={12} aria-hidden="true" />
+                </Link>
+              </div>
+            </AnimateIn>
+          </div>
+        )}
       </div>
     </section>
   )

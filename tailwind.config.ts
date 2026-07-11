@@ -39,8 +39,8 @@ const config: Config = {
         sindoor: '#C1272D',
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'Georgia', 'serif'],
-        body: ['DM Sans', '-apple-system', 'sans-serif'],
+        display: ['adobe-garamond-pro', '"Noto Sans Oriya"', 'Georgia', 'serif'],
+        body: ['arboria', '"Noto Sans Oriya"', '-apple-system', 'sans-serif'],
       },
       fontSize: {
         display: ['clamp(3rem,7vw,6rem)', { lineHeight: '0.97', letterSpacing: '-0.02em' }],
@@ -59,8 +59,8 @@ const config: Config = {
         },
       },
       spacing: {
-        section: 'clamp(5rem,10vw,8rem)',
-        'section-sm': 'clamp(3rem,6vw,5rem)',
+        section: 'clamp(3rem,6vw,5rem)',
+        'section-sm': 'clamp(2rem,4vw,3.5rem)',
       },
       maxWidth: {
         wrap: '1200px',

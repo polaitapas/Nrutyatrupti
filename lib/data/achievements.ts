@@ -51,6 +51,27 @@ export const achievementTimeline = [
   },
 ]
 
+export const featuredHonours = [
+  {
+    icon: 'Star' as const,
+    year: '2018',
+    title: 'CCRT Senior Scholarship',
+    body: "Ministry of Culture, Government of India — one of the country's most prestigious fellowships for classical performing artists.",
+  },
+  {
+    icon: 'Award' as const,
+    year: '2016',
+    title: 'B-Grade Artist · Doordarshan',
+    body: 'Formally recognised by Prasar Bharati / Doordarshan Kendra, Government of India — awarded only to artists of demonstrably high national calibre.',
+  },
+  {
+    icon: 'Star' as const,
+    year: '2010',
+    title: "Governor's Trophy",
+    body: 'Dept. of Culture, Odisha Sangeet Natak Akademi & Odisha Lalit Kala Akademi — among the highest cultural honours in the state of Odisha.',
+  },
+]
+
 export const statsData = [
   { value: '200', suffix: '+', label: 'Students Trained', sub: 'Across all age groups' },
   { value: '50', suffix: '+', label: 'Stage Performances', sub: 'National & international stages' },

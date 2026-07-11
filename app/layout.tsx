@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next'
+import { MotionConfig } from 'framer-motion'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import EnquiryProvider from '@/components/ui/EnquiryModal'
 import { siteConfig } from '@/lib/data/site'
 
 export const viewport: Viewport = {
@@ -42,14 +45,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      {
-        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g fill='none' stroke='%23C9933A' stroke-width='2'><circle cx='32' cy='32' r='28'/><circle cx='32' cy='32' r='9'/><line x1='32' y1='4' x2='32' y2='60'/><line x1='4' y1='32' x2='60' y2='32'/><line x1='12' y1='12' x2='52' y2='52'/><line x1='52' y1='12' x2='12' y2='52'/></g><circle cx='32' cy='32' r='4' fill='%23C9933A'/></svg>",
-        type: 'image/svg+xml',
-      },
+      { url: '/images/logo.png', type: 'image/png' },
     ],
-  },
-  alternates: {
-    canonical: siteConfig.seo.url,
+    apple: [{ url: '/images/logo.png' }],
   },
 }
 
@@ -84,7 +82,7 @@ const structuredData = {
   founder: {
     '@type': 'Person',
     name: 'Truptismita Tarini',
-    jobTitle: 'Founder and Guru',
+    jobTitle: 'Founder and Mentor',
     description:
       'B-Grade Doordarshan Artist and CCRT Senior Scholar with 20+ years of Odissi training in the Guru Deba Prasad Das lineage',
   },
@@ -98,21 +96,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <link rel="preconnect" href="https://use.typekit.net" />
+        <link rel="stylesheet" href="https://use.typekit.net/ysq5dvr.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap"
+        />
       </head>
       <body>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-dark focus:font-body focus:text-sm"
-        >
-          Skip to content
-        </a>
-        <Navbar />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
+        {/* Fixed full-viewport background — the dancer stays put while content scrolls over it */}
+        <div className="site-bg" aria-hidden="true" />
+        <div className="page-loader" suppressHydrationWarning>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo.png" alt="" width={80} height={80} />
+        </div>
+        <MotionConfig reducedMotion="user">
+          <EnquiryProvider>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-dark focus:font-body focus:text-sm"
+            >
+              Skip to content
+            </a>
+            <Navbar />
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
+            <Footer />
+            <WhatsAppButton />
+          </EnquiryProvider>
+        </MotionConfig>
       </body>
     </html>
   )

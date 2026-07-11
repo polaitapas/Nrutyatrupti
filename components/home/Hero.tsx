@@ -1,46 +1,59 @@
 'use client'
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { siteConfig } from '@/lib/data/site'
 
-// Landscape-only photos: portrait shots get decapitated by object-cover in a
-// full-viewport frame. objectPosition keeps headdresses in frame on all ratios.
 const slides = [
   {
-    src: '/images/0S6A7298.JPG.jpeg',
-    alt: 'Odissi trio in namaskar pose before the illuminated temple — Nrutyatrupti',
-    position: 'center 18%',
+    src: '/images/nrutyatrupti-solo-dynamic-pose.jpg',
+    alt: 'Solo Odissi dancer in dynamic pose on stage — Nrutyatrupti',
+    position: 'center top',
   },
   {
-    src: '/images/0S6A7308.JPG.jpeg',
-    alt: 'Full Odissi ensemble against the Konark temple backdrop — Nrutyatrupti',
-    position: 'center 22%',
+    src: '/images/DSC_0129.JPG.jpeg',
+    alt: 'Solo Odissi dancer framed in a temple archway — Nrutyatrupti',
+    position: 'center top',
   },
   {
-    src: '/images/0S6A7384.JPG.jpeg',
-    alt: 'Expressive Odissi abhinaya duet on the festival stage — Nrutyatrupti',
-    position: 'center 25%',
+    src: '/images/embedded-1-odissi-dancer-of-nrutya-trupti-performing-in-a-bhu.jpg',
+    alt: 'Solo Odissi dancer performing before a temple mural — Nrutyatrupti',
+    position: 'center top',
   },
   {
-    src: '/images/0S6A7489.JPG.jpeg',
-    alt: 'Dynamic Odissi ensemble performance at the Mukteshwar festival — Nrutyatrupti',
-    position: 'center 30%',
+    src: '/images/0S6A7469.JPG.jpeg',
+    alt: 'Solo Odissi dancer under dramatic stage lighting — Nrutyatrupti',
+    position: 'center top',
   },
 ]
 
+const variants = {
+  enter: (dir: number) => ({
+    x: dir > 0 ? '100%' : '-100%',
+  }),
+  center: {
+    x: 0,
+  },
+  exit: (dir: number) => ({
+    x: dir > 0 ? '-100%' : '100%',
+  }),
+}
+
+const transition = {
+  x: { duration: 0.85, ease: [0.65, 0, 0.35, 1] as const },
+}
+
 export default function Hero() {
-  const [current, setCurrent] = useState(0)
-  const [entered, setEntered] = useState(false)
+  const [[current, direction], setSlide] = useState([0, 1])
 
   const advance = useCallback(() => {
-    setCurrent((c) => (c + 1) % slides.length)
+    setSlide(([c]) => [(c + 1) % slides.length, 1])
   }, [])
 
-  useEffect(() => {
-    const t = setTimeout(() => setEntered(true), 100)
-    return () => clearTimeout(t)
+  const goTo = useCallback((idx: number) => {
+    setSlide(([c]) => [idx, idx > c ? 1 : -1])
   }, [])
 
   useEffect(() => {
@@ -50,97 +63,70 @@ export default function Hero() {
 
   return (
     <section
-      className="relative h-[100svh] min-h-[560px] max-h-[1000px] overflow-hidden"
-      style={{ background: 'var(--dark)' }}
+      className="relative overflow-hidden bg-heritage-light pt-24 pb-14 lg:pt-28 lg:pb-16"
       aria-label="Hero — Nrutyatrupti Odissi Dance Academy"
     >
-      <AnimatePresence mode="sync">
-        <motion.div
-          key={current}
-          className="absolute inset-0"
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.4, ease: 'easeInOut' }}
-        >
-          <Image
-            src={slides[current].src}
-            alt={slides[current].alt}
-            fill
-            className="object-cover"
-            style={{ objectPosition: slides[current].position }}
-            priority={current === 0}
-            sizes="100vw"
-            quality={80}
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Scrim: strong on the left text column, lighter on the right so the
-          photograph stays visible — text never fights the image. */}
-      <div
-        className="absolute inset-0 z-[1]"
-        aria-hidden="true"
-        style={{
-          background:
-            'linear-gradient(to right, rgba(13,9,6,0.88) 0%, rgba(13,9,6,0.72) 34%, rgba(13,9,6,0.28) 62%, rgba(13,9,6,0.15) 100%)',
-        }}
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 h-40 z-[1]"
-        aria-hidden="true"
-        style={{ background: 'linear-gradient(to bottom, transparent, rgba(13,9,6,0.9))' }}
-      />
-
-      <div className="relative z-10 h-full flex items-center pt-16">
-        <div className="wrap w-full">
-          <div className="max-w-2xl">
-            <motion.div
-              className="flex items-center gap-3 mb-7"
-              initial={{ opacity: 0, y: 16 }}
-              animate={entered ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 }}
+      <div className="wrap relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div>
+            <motion.span
+              className="eyebrow"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.6 }}
             >
-              <span className="block w-8 h-px bg-gold" aria-hidden="true" />
-              <span className="font-body text-[11px] tracking-[0.28em] uppercase text-gold">
-                Bhubaneswar, Odisha · Est. 2021
-              </span>
-            </motion.div>
+              Bhubaneswar, Odisha · Est. 2021
+            </motion.span>
 
             <motion.h1
-              className="font-display font-light text-ivory"
+              className="font-display font-light mt-4"
               style={{
-                fontSize: 'clamp(2.5rem, 6.5vw, 5.5rem)',
+                fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)',
+                color: 'var(--dark-warm)',
                 letterSpacing: '-0.02em',
-                lineHeight: 1.08,
+                lineHeight: 1.05,
               }}
-              initial={{ opacity: 0, y: 28 }}
-              animate={entered ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
             >
               Where Tradition
               <br />
-              <em className="not-italic" style={{ color: 'var(--gold)' }}>
+              <em className="not-italic" style={{ color: 'var(--maroon)' }}>
                 Meets Grace
               </em>
+              <span className="block font-display italic mt-2" style={{ fontSize: 'clamp(0.85rem, 1.2vw, 1rem)', color: 'var(--gold)', opacity: 0.7 }}>
+                ଯେଉଁଠି ପରମ୍ପରା ଲାବଣ୍ୟ ସହ ମିଳିତ ହୁଏ
+              </span>
             </motion.h1>
 
             <motion.p
-              className="mt-6 font-body text-ivory/80 leading-relaxed max-w-md"
-              style={{ fontSize: 'clamp(1rem, 1.4vw, 1.125rem)' }}
-              initial={{ opacity: 0, y: 18 }}
-              animate={entered ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.55 }}
+              className="mt-5 font-display italic"
+              style={{ color: '#8B7355', fontSize: 'clamp(1rem, 1.3vw, 1.15rem)' }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.6 }}
             >
-              Learn Odissi — the sacred classical dance of Odisha — under the devoted
-              guidance of Guru Truptismita Tarini.
+              यतो हस्तस्ततो दृष्टिः — where the hand goes, the eye follows.
+            </motion.p>
+
+            <motion.p
+              className="mt-5 font-body leading-relaxed max-w-md"
+              style={{ color: '#5C4A35', fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)' }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.6 }}
+            >
+              Every step, a story. Every student, an artist. Learn the sacred classical
+              dance of Odisha under devoted gurus — from your very first chauka to the
+              concert stage.
             </motion.p>
 
             <motion.div
-              className="mt-9 flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 16 }}
-              animate={entered ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.75 }}
+              className="mt-8 flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.6 }}
             >
               <Link href="/classes" className="btn-primary group">
                 Explore Classes
@@ -150,69 +136,91 @@ export default function Hero() {
                   aria-hidden="true"
                 />
               </Link>
-              <Link href="/founder" className="btn-outline-light">
-                Meet the Guru
+              <Link href="/about" className="btn-outline">
+                Meet Our Gurus
               </Link>
             </motion.div>
 
-            <motion.div
-              className="mt-12 inline-flex flex-wrap items-center gap-x-6 gap-y-2 border-l-2 pl-5 py-1"
-              style={{ borderColor: 'rgba(201,147,58,0.5)' }}
-              initial={{ opacity: 0 }}
-              animate={entered ? { opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.95 }}
+            <motion.a
+              href={siteConfig.google.reviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="google-review-badge inline-flex items-center gap-3 mt-6 px-5 py-2.5 rounded-full"
+              style={{ border: '1px solid rgba(201,147,58,0.4)', background: 'rgba(201,147,58,0.08)' }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              whileHover={{ scale: 1.04, transition: { type: 'spring', stiffness: 400, damping: 22 } }}
+              whileTap={{ scale: 0.97, transition: { type: 'spring', stiffness: 500, damping: 25 } }}
+              aria-label={`Rated ${siteConfig.google.rating} — Read ${siteConfig.google.reviewCount} Google Reviews`}
             >
-              {['B-Grade Doordarshan Artist', 'CCRT Senior Scholar', '20 Years of Odissi'].map(
-                (badge) => (
-                  <span key={badge} className="font-body text-[13px] text-ivory/70">
-                    {badge}
-                  </span>
-                )
-              )}
-            </motion.div>
+              <span className="font-display text-base leading-none" style={{ color: 'var(--dark-warm)' }}>
+                {siteConfig.google.rating}★
+              </span>
+              <span className="text-xs font-body" style={{ color: '#6B5443' }}>
+                {siteConfig.google.reviewCount} Google Reviews
+              </span>
+            </motion.a>
+          </div>
+
+          {/* Image carousel — enlarged portrait frame suited to full-length dance photography */}
+          <div className="relative mx-auto w-full max-w-lg lg:max-w-2xl">
+            <div
+              className="relative overflow-hidden rounded-2xl shadow-2xl"
+              style={{ aspectRatio: '4 / 5', background: '#0A0A0A' }}
+            >
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                  key={current}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={transition}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={slides[current].src}
+                    alt={slides[current].alt}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: slides[current].position }}
+                    priority={current === 0}
+                    sizes="(max-width: 1024px) 90vw, 640px"
+                    quality={85}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div
+              className="flex gap-2 justify-center mt-7"
+              role="tablist"
+              aria-label="Slide navigation"
+            >
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  role="tab"
+                  aria-selected={i === current}
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => goTo(i)}
+                  className="flex items-center justify-center cursor-pointer"
+                  style={{ minWidth: 24, minHeight: 24 }}
+                >
+                  <span
+                    className={`block h-[3px] rounded-full transition-all duration-500 ${
+                      i === current ? 'w-9 bg-maroon' : 'w-4 bg-maroon/20 hover:bg-maroon/40'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-
-      <div
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex gap-2 z-20"
-        role="tablist"
-        aria-label="Slide navigation"
-      >
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            role="tab"
-            aria-selected={i === current}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => setCurrent(i)}
-            className="py-2 px-1 cursor-pointer"
-          >
-            <span
-              className={`block h-[3px] rounded-full transition-all duration-500 ${
-                i === current ? 'w-9 bg-gold' : 'w-4 bg-ivory/40 hover:bg-ivory/70'
-              }`}
-            />
-          </button>
-        ))}
-      </div>
-
-      <motion.a
-        href="#about"
-        className="absolute bottom-7 right-8 hidden lg:flex flex-col items-center gap-2 text-ivory/50 hover:text-gold transition-colors z-20"
-        aria-label="Scroll to content"
-        initial={{ opacity: 0 }}
-        animate={entered ? { opacity: 1 } : {}}
-        transition={{ delay: 1.3, duration: 0.7 }}
-      >
-        <span
-          className="text-[9px] tracking-[0.25em] uppercase font-body"
-          style={{ writingMode: 'vertical-rl' }}
-        >
-          Scroll
-        </span>
-        <ChevronDown size={14} className="animate-bounce" aria-hidden="true" />
-      </motion.a>
     </section>
   )
 }

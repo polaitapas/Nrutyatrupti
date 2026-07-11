@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { Phone, ArrowRight } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
+import EnquiryTrigger from '@/components/ui/EnquiryTrigger'
 import { siteConfig } from '@/lib/data/site'
 
 export default function ContactCTA() {
@@ -26,7 +26,7 @@ export default function ContactCTA() {
 
       <div className="wrap text-center relative z-10">
         <AnimateIn>
-          <span className="eyebrow eyebrow-gold justify-center">Begin Your Journey</span>
+          <span className="eyebrow eyebrow-gold justify-center">Begin the Journey</span>
         </AnimateIn>
         <AnimateIn delay={0.15}>
           <h2
@@ -37,38 +37,38 @@ export default function ContactCTA() {
               letterSpacing: '-0.02em',
             }}
           >
-            Ready to take your
+            Every dancer takes
             <br />
-            first <em style={{ color: 'var(--gold)' }}>chauka</em>?
+            a first <em style={{ color: 'var(--gold)' }}>chauka</em>
           </h2>
         </AnimateIn>
         <AnimateIn delay={0.25}>
           <p className="mt-6 font-body text-ivory/55 leading-relaxed max-w-xl mx-auto text-base">
             Whether you&apos;re enrolling a child, returning to dance as an adult, or simply
-            curious — we&apos;d love to have a conversation. All classes begin with a free
-            trial session.
+            curious — a complimentary trial session is the easiest way to find out if
+            Nrutyatrupti is the right home for your journey.
           </p>
         </AnimateIn>
 
         <AnimateIn delay={0.35}>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20Nrutyatrupti%2C%20I%20would%20like%20to%20enquire%20about%20dance%20classes.`}
+              href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20Nrutyatrupti%2C%20I%20would%20like%20to%20book%20a%20complimentary%20trial%20class.`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary group"
             >
               <Phone size={15} aria-hidden="true" />
-              WhatsApp Us Now
+              Book Your Complimentary Trial
               <ArrowRight
                 size={15}
                 className="group-hover:translate-x-1 transition-transform"
                 aria-hidden="true"
               />
             </a>
-            <Link href="/contact" className="btn-outline-light group">
+            <EnquiryTrigger className="btn-outline-light group">
               Send an Enquiry
-            </Link>
+            </EnquiryTrigger>
           </div>
         </AnimateIn>
 
@@ -76,7 +76,7 @@ export default function ContactCTA() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-ivory/35 text-sm font-body">
             <span>Online classes available</span>
             <span className="hidden sm:block w-px h-4 bg-white/20" aria-hidden="true" />
-            <span>Free trial class</span>
+            <span>No obligation, no pressure</span>
           </div>
         </AnimateIn>
       </div>

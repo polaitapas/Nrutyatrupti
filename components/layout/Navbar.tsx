@@ -3,26 +3,26 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { siteConfig } from '@/lib/data/site'
+import { useEnquiry } from '@/components/ui/EnquiryModal'
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/founder', label: 'Our Guru' },
   { href: '/classes', label: 'Classes' },
-  { href: '/achievements', label: 'Achievements' },
-  { href: '/events', label: 'Events' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const { open: openEnquiry } = useEnquiry()
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 })
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -41,14 +41,19 @@ export default function Navbar() {
 
   return (
     <>
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] z-[51] origin-left pointer-events-none"
+        style={{ scaleX: progress, background: 'linear-gradient(90deg, var(--gold), var(--gold-light))' }}
+        aria-hidden="true"
+      />
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-          scrolled ? 'glass' : 'bg-transparent'
+          'fixed top-0 left-0 right-0 z-50 transition-shadow duration-500 glass-light',
+          scrolled && 'shadow-sm'
         )}
       >
         <nav
-          className="wrap flex items-center justify-between py-4 lg:py-5"
+          className="nav-wrap flex items-center justify-between py-4 lg:py-5"
           aria-label="Main navigation"
         >
           <Link
@@ -68,12 +73,12 @@ export default function Navbar() {
             </div>
             <div>
               <div
-                className="font-display text-ivory font-light"
-                style={{ fontSize: '1.3rem' }}
+                className="font-display font-light"
+                style={{ fontSize: '1.3rem', color: 'var(--dark-warm)' }}
               >
                 Nrutyatrupti
               </div>
-              <div className="text-[10px] tracking-[0.2em] uppercase text-gold/60 font-body hidden sm:block">
+              <div className="text-[10px] tracking-[0.2em] uppercase text-gold-dark/70 font-body hidden sm:block">
                 Odissi Dance Academy
               </div>
             </div>
@@ -89,8 +94,8 @@ export default function Navbar() {
                     className={cn(
                       'relative px-3 py-2 text-sm font-body transition-colors duration-200',
                       active
-                        ? 'text-gold'
-                        : 'text-ivory/75 hover:text-ivory'
+                        ? 'text-maroon'
+                        : 'text-dark-warm/70 hover:text-dark-warm'
                     )}
                   >
                     {link.label}
@@ -108,20 +113,19 @@ export default function Navbar() {
           </ul>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href={`https://wa.me/${siteConfig.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={openEnquiry}
               className="btn-primary text-xs py-3 px-6"
-              aria-label="Enquire on WhatsApp"
+              aria-label="Open enquiry form"
             >
               <Phone size={14} aria-hidden="true" />
               Enquire Now
-            </a>
+            </button>
           </div>
 
           <button
-            className="lg:hidden p-2 text-ivory/80 hover:text-ivory transition-colors"
+            className="lg:hidden p-2 text-dark-warm/80 hover:text-dark-warm transition-colors"
             onClick={() => setOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={open}
@@ -189,15 +193,17 @@ export default function Navbar() {
                 </ul>
               </nav>
               <div className="p-6 border-t border-white/10 space-y-3">
-                <a
-                  href={`https://wa.me/${siteConfig.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false)
+                    openEnquiry()
+                  }}
                   className="btn-primary w-full justify-center text-sm"
                 >
                   <Phone size={15} aria-hidden="true" />
-                  Enquire on WhatsApp
-                </a>
+                  Enquire Now
+                </button>
                 <p className="text-center text-xs text-ivory/40 font-body">
                   {siteConfig.address.city}, {siteConfig.address.state}
                 </p>

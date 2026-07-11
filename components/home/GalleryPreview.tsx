@@ -44,14 +44,14 @@ export default function GalleryPreview() {
       aria-label="Gallery preview — moments in motion"
     >
       <div className="wrap">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
           <div>
             <AnimateIn>
-              <span className="eyebrow">Moments in Motion</span>
+              <span className="eyebrow"><span className="indic">ଗ୍ୟାଲେରୀ</span> · The Gallery</span>
             </AnimateIn>
             <AnimateIn delay={0.15}>
               <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
-                On the <em>stage</em>
+                Every stage, <em>every moment</em>
               </h2>
             </AnimateIn>
           </div>
@@ -68,7 +68,7 @@ export default function GalleryPreview() {
         </div>
       </div>
 
-      <AnimateStagger className="wrap" staggerDelay={0.06}>
+      <AnimateStagger className="wrap" staggerDelay={0.05}>
         <div
           ref={trackRef}
           className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth no-scrollbar"

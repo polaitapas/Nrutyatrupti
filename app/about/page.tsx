@@ -1,17 +1,16 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { Award, ArrowRight } from 'lucide-react'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
-import StatsSection from '@/components/home/StatsSection'
-import Testimonials from '@/components/home/Testimonials'
-import ContactCTA from '@/components/home/ContactCTA'
-import OdissiJourney from '@/components/home/OdissiJourney'
+import { founderData, gurushreeData } from '@/lib/data/site'
+import { featuredHonours } from '@/lib/data/achievements'
 
 export const metadata: Metadata = {
-  title: 'About the Academy',
+  title: 'Our Story',
   description:
-    'Nrutyatrupti is Bhubaneswar\'s dedicated home for Odissi classical dance and the folk traditions of Odisha. Founded 2021. Affiliated with Pragyan Nrutya Academy.',
+    "Nrutyatrupti is Bhubaneswar's dedicated home for Odissi classical dance and the folk traditions of Odisha — founded 2021, led by Truptismita Tarini under the guidance of Gurushree Swayam Pragyan Sahoo.",
+  alternates: { canonical: '/about' },
 }
 
 const pillars = [
@@ -27,12 +26,12 @@ export default function AboutPage() {
   return (
     <>
       <section
-        className="relative pt-32 pb-20 overflow-hidden bg-heritage-deep"
+        className="relative pt-24 pb-14 overflow-hidden bg-heritage-deep"
         aria-label="About page header"
       >
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow eyebrow-gold">Our Story</span>
+            <span className="eyebrow eyebrow-gold"><span className="indic">ଆମ କାହାଣୀ</span> · Our Story</span>
             <h1
               className="font-display font-light text-ivory mt-4 leading-none"
               style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '-0.02em' }}
@@ -53,7 +52,7 @@ export default function AboutPage() {
 
       <section className="py-section bg-heritage-ivory" aria-label="Academy story">
         <div className="wrap relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <AnimateIn variant="slideLeft">
               <div className="relative">
                 <div
@@ -63,8 +62,9 @@ export default function AboutPage() {
                   <div className="relative aspect-[4/5]">
                     <Image
                       src="/images/FB_IMG_1705843883174.jpg"
-                      alt="Guru Truptismita Tarini with a student — the guru-shishya tradition in practice"
+                      alt="Founder Truptismita Tarini with a student — the guru-shishya tradition in practice"
                       fill
+                      priority
                       className="object-cover object-center"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
@@ -82,11 +82,11 @@ export default function AboutPage() {
                 <div className="mt-6 space-y-4 font-body leading-relaxed text-base" style={{ color: '#5C4A35' }}>
                   <p>
                     Nrutyatrupti was founded in 2021 by{' '}
-                    <strong style={{ color: 'var(--dark-warm)' }}>Guru Truptismita Tarini</strong>{' '}
-                    under the guidance of her own guru,{' '}
+                    <strong style={{ color: 'var(--dark-warm)' }}>Truptismita Tarini</strong>,
+                    our Founder &amp; Mentor, under the guidance of{' '}
                     <strong style={{ color: 'var(--dark-warm)' }}>Gurushree Swayam Pragyan Sahoo</strong>{' '}
-                    — Lead Artist and Guru of the academy and the figure whose teaching underpins
-                    everything we do. The academy is affiliated with{' '}
+                    — Our Guru, and the figure whose teaching underpins everything we do. The
+                    academy is affiliated with{' '}
                     <strong style={{ color: 'var(--dark-warm)' }}>Pragyan Nrutya Academy</strong>.
                   </p>
                   <p>
@@ -99,28 +99,208 @@ export default function AboutPage() {
                   </p>
                 </div>
               </AnimateIn>
-              <AnimateIn delay={0.3}>
-                <div className="mt-8">
-                  <Link href="/founder" className="btn-primary group">
-                    Meet Guru Truptismita
-                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                  </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-section bg-heritage-deep-alt" aria-label="Our Guru">
+        <div className="wrap relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <AnimateIn variant="scale" className="lg:order-2">
+              <div className="relative max-w-md mx-auto">
+                <div
+                  className="overflow-hidden"
+                  style={{
+                    clipPath: 'polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 32px 100%, 0 calc(100% - 32px))',
+                  }}
+                >
+                  <div className="relative aspect-[3/4]">
+                    <Image
+                      src={gurushreeData.image}
+                      alt={gurushreeData.imageAlt}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 45vw"
+                    />
+                  </div>
                 </div>
+                <span className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-gold/40" aria-hidden="true" />
+                <span className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-gold/40" aria-hidden="true" />
+              </div>
+            </AnimateIn>
+            <div className="lg:order-1">
+              <AnimateIn>
+                <span className="eyebrow eyebrow-gold">Our Guru</span>
+                <h2
+                  className="font-display font-light text-ivory mt-3"
+                  style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', lineHeight: 1.15 }}
+                >
+                  Gurushree Swayam <em style={{ color: 'var(--gold)' }}>Pragyan Sahoo</em>
+                </h2>
+              </AnimateIn>
+              <AnimateIn delay={0.15}>
+                <p className="mt-5 font-body text-ivory/60 leading-relaxed max-w-lg text-base">
+                  {gurushreeData.bio}
+                </p>
+              </AnimateIn>
+              <AnimateIn delay={0.25}>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 text-xs font-body px-3 py-1.5"
+                  style={{
+                    border: '1px solid rgba(201,147,58,0.3)',
+                    color: 'var(--gold)',
+                    background: 'rgba(201,147,58,0.08)',
+                  }}
+                >
+                  <Award size={11} aria-hidden="true" />
+                  Deba Prasad Das Lineage
+                </span>
               </AnimateIn>
             </div>
           </div>
         </div>
       </section>
 
+      <section className="py-section bg-heritage-ivory" aria-label="Founder and Mentor">
+        <div className="wrap relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <AnimateIn variant="slideRight" className="lg:order-2">
+              <div className="relative max-w-md mx-auto">
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    clipPath:
+                      'polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px))',
+                  }}
+                >
+                  <div className="relative aspect-[3/4]">
+                    <Image
+                      src={founderData.image}
+                      alt={founderData.imageAlt}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 45vw"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{ background: 'linear-gradient(to top, rgba(13,9,6,0.7) 0%, transparent 60%)' }}
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="font-display text-ivory text-2xl font-light">{founderData.name}</div>
+                    <div className="text-xs tracking-[0.2em] uppercase font-body mt-1" style={{ color: 'var(--gold)' }}>
+                      {founderData.title}
+                    </div>
+                  </div>
+                </div>
+                <span className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2" style={{ borderColor: 'var(--gold)', opacity: 0.5 }} aria-hidden="true" />
+              </div>
+            </AnimateIn>
+
+            <div className="lg:order-1">
+              <AnimateIn>
+                <span className="eyebrow">Founder &amp; Mentor</span>
+                <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
+                  {founderData.name}
+                </h2>
+              </AnimateIn>
+
+              <AnimateIn delay={0.15} className="mt-6 space-y-4 font-body leading-relaxed text-base" style={{ color: '#5C4A35' }}>
+                <p>{founderData.shortBio}</p>
+                <p>
+                  Her stage career began in 2007 and has continued without interruption —
+                  through Rabindra Mandap, the Mukteshwar Dance Festival organised by Odisha
+                  Tourism, Utkal Divas celebrations from Varanasi to Kolkata to Mumbai, and the
+                  International Dance Festival at Mamallapuram.
+                </p>
+              </AnimateIn>
+
+              <AnimateIn delay={0.25}>
+                <ul className="mt-6 space-y-3" role="list">
+                  {founderData.credentials.map((cred) => (
+                    <li key={cred} className="flex items-start gap-3">
+                      <Award size={14} className="mt-1 flex-shrink-0" style={{ color: 'var(--gold)' }} aria-hidden="true" />
+                      <span className="font-body text-sm leading-relaxed" style={{ color: '#5C4A35' }}>{cred}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AnimateIn>
+
+              <AnimateIn delay={0.3}>
+                <div className="mt-8 grid grid-cols-3 gap-3">
+                  {featuredHonours.map((h) => (
+                    <div
+                      key={h.year}
+                      className="p-3 text-center card-lift-sm"
+                      style={{
+                        border: '1px solid rgba(201,147,58,0.2)',
+                        background: 'rgba(201,147,58,0.04)',
+                      }}
+                    >
+                      <div className="font-display text-lg" style={{ color: 'var(--gold)' }}>{h.year}</div>
+                      <div className="text-[11px] font-body leading-snug mt-0.5" style={{ color: '#8B7355' }}>{h.title}</div>
+                    </div>
+                  ))}
+                </div>
+              </AnimateIn>
+
+              <AnimateIn delay={0.35}>
+                <div className="mt-6">
+                  <Link
+                    href="/classes#achievements"
+                    className="inline-flex items-center gap-2 font-body text-xs tracking-[0.15em] uppercase text-gold hover:text-gold-light transition-colors"
+                  >
+                    View Full Achievements &amp; Timeline
+                    <ArrowRight size={12} aria-hidden="true" />
+                  </Link>
+                </div>
+              </AnimateIn>
+            </div>
+          </div>
+
+          <AnimateIn delay={0.2}>
+            <div className="mt-10 max-w-3xl">
+              <h3 className="font-display text-xl mb-6" style={{ color: 'var(--dark-warm)' }}>
+                Professional Qualifications
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { institution: 'Akhila Bharatiya Gandharva Maha Vidyalaya Mandal, Mumbai', qualifications: 'Prathama through Visharad Ditiya (full classical graded sequence in Odissi)' },
+                  { institution: 'Odisha Sangeet Natak Akademi, Bhubaneswar', qualifications: 'Prarambhik through Shastri Purna — Nrutya Shree, Nrutya Bhushan, Shastri diplomas' },
+                ].map((q) => (
+                  <div
+                    key={q.institution}
+                    className="p-5 card-lift-sm"
+                    style={{
+                      border: '1px solid rgba(201,147,58,0.15)',
+                      background: 'rgba(201,147,58,0.04)',
+                      clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%)',
+                    }}
+                  >
+                    <div className="font-body font-medium text-sm mb-2" style={{ color: 'var(--dark-warm)' }}>
+                      {q.institution}
+                    </div>
+                    <div className="font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>
+                      {q.qualifications}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
       <section className="py-section bg-heritage-light" aria-label="Our pillars">
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow">What We Stand For</span>
+            <span className="eyebrow"><span className="indic">ଆମ ସ୍ତମ୍ଭ</span> · What We Stand For</span>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
               Our <em>pillars</em>
             </h2>
           </AnimateIn>
-          <AnimateStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12" staggerDelay={0.08}>
+          <AnimateStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8" staggerDelay={0.05}>
             {pillars.map((p) => (
               <AnimateStaggerItem key={p.title}>
                 <div
@@ -140,10 +320,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <StatsSection />
-      <OdissiJourney />
-      <Testimonials />
-      <ContactCTA />
     </>
   )
 }

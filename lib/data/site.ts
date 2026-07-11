@@ -14,7 +14,11 @@ export const siteConfig = {
     state: 'Odisha',
     pin: '751029',
     full: 'Tillottama Tower, K1/512, Kalinganagar, Bhubaneswar, Odisha 751029',
-    mapsUrl: 'https://maps.google.com/?q=20.2961,85.8245',
+    lat: 20.2687,
+    lng: 85.7615,
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tillottama+Tower+K1%2F512+Kalinganagar+Bhubaneswar+Odisha+751029',
+    mapsEmbedUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.9!2d85.7615!3d20.2687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDE2JzA3LjMiTiA4NcKwNDUnNDEuNCJF!5e0!3m2!1sen!2sin!4v1',
   },
   social: {
     instagram: 'https://www.instagram.com/nrutyatrupti/',
@@ -23,14 +27,14 @@ export const siteConfig = {
   },
   seo: {
     url: 'https://nrutyatrupti.netlify.app',
-    ogImage: '/images/FB_IMG_1705843913115.jpg',
+    ogImage: '/images/og-image.jpg',
     keywords:
       'Odissi dance classes Bhubaneswar, classical dance academy Bhubaneswar, Odissi dance training Odisha, Odia folk dance Bhubaneswar, Nrutyatrupti, Guru Truptismita Tarini',
   },
   google: {
     rating: '5.0',
     reviewCount: '30',
-    reviewUrl: 'https://www.google.com/search?q=nrutya+trupti+bhubaneswar',
+    reviewUrl: 'https://g.page/r/CdbgSqFma3e_EAE/review',
   },
   instagramReels: [
     {
@@ -53,11 +57,11 @@ export const siteConfig = {
 
 export const founderData = {
   name: 'Smt. Truptismita Tarini',
-  title: 'Founder & Guru',
+  title: 'Founder & Mentor',
   shortBio:
     'Trained for 20 years in the living lineage of the legendary Guru Deba Prasad Das, under the personal guidance of Gurushree Swayam Pragyan Sahoo. A B-Grade artist recognised by Doordarshan Kendra (Prasar Bharati, Government of India) and recipient of the prestigious CCRT Senior Scholarship from the Ministry of Culture, India (2018).',
-  image: '/images/embedded-3-guru-truptismita-tarini-founder-of-nrutya-trupti-p.jpg',
-  imageAlt: 'Guru Truptismita Tarini, founder of Nrutyatrupti Odissi Dance Academy',
+  image: '/images/DSC_0115.JPG.jpeg',
+  imageAlt: 'Smt. Truptismita Tarini in Odissi attire at an ancient Odia temple',
   credentials: [
     'B-Grade Artist · Doordarshan Kendra, Prasar Bharati, Govt. of India',
     'CCRT Senior Scholar 2018 · Ministry of Culture, India',
@@ -75,8 +79,8 @@ export const founderData = {
 
 export const gurushreeData = {
   name: 'Gurushree Swayam Pragyan Sahoo',
-  title: 'Lead Artist & Guru',
-  bio: 'The Lead Artist and Guru of Nrutyatrupti — the very guru under whom Guru Truptismita Tarini has trained for over two decades in the Deba Prasad Das style of Odissi. A lifetime devoted to preserving the classical traditions of Odisha, his guidance forms the technical and spiritual backbone of the academy.',
+  title: 'Our Guru',
+  bio: 'The Guru and Lead Artist of Nrutyatrupti — the very guru under whom Founder Truptismita Tarini has trained for over two decades in the Deba Prasad Das style of Odissi. A lifetime devoted to preserving the classical traditions of Odisha, his guidance forms the technical and spiritual backbone of the academy.',
   image: '/images/embedded-4-gurushree-swayam-pragyan-sahoo-senior-guru-at-nrut.png',
-  imageAlt: 'Gurushree Swayam Pragyan Sahoo, Lead Artist and Guru at Nrutyatrupti',
+  imageAlt: 'Gurushree Swayam Pragyan Sahoo, Our Guru at Nrutyatrupti',
 }

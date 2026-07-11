@@ -4,3 +4,23 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/founder"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/achievements"
+  to = "/classes#achievements"
+  status = 301
+
+[[redirects]]
+  from = "/events"
+  to = "/classes#events"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/"
+  status = 301
