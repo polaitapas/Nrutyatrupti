@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'DanceSchool',
+  '@type': ['LocalBusiness', 'EducationalOrganization'],
   name: siteConfig.fullName,
   description: siteConfig.description,
   url: siteConfig.seo.url,
