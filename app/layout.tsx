@@ -70,8 +70,8 @@ const structuredData = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 20.2961,
-    longitude: 85.8245,
+    latitude: siteConfig.address.lat,
+    longitude: siteConfig.address.lng,
   },
   aggregateRating: {
     '@type': 'AggregateRating',

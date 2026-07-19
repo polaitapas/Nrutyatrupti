@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import { galleryImages } from '@/lib/data/gallery'
@@ -82,11 +82,11 @@ const categories: {
   {
     key: 'founder',
     label: 'Founder & Guru',
-    blurb: 'The lineage behind every lesson — Founder Truptismita Tarini and Gurushree Swayam Pragyan Sahoo, and the bond they share with every student.',
+    blurb: 'The lineage behind every lesson — Founder Truptismita Tarini and Guru Smt. Swayam Pragnya Sahoo, and the bond they share with every student.',
     color: 'var(--parchment)',
     hero: { src: founderData.image, alt: founderData.imageAlt, caption: 'Truptismita Tarini — Founder & Mentor' },
     images: [
-      { src: gurushreeData.image, alt: gurushreeData.imageAlt, caption: 'Gurushree Swayam Pragyan Sahoo — Our Guru' },
+      { src: gurushreeData.image, alt: gurushreeData.imageAlt, caption: 'Guru Smt. Swayam Pragnya Sahoo — Our Guru' },
       ...pick([
         '/images/DSC_0116.JPG.jpeg',
         '/images/DSC_0130.JPG.jpeg',
@@ -97,13 +97,23 @@ const categories: {
 
 // Purely decorative per-tab vertical offsets so the row reads as unevenly
 // inserted bookmark tabs rather than a uniform button bar.
-const tabOffsets = [0, 18, 6, 24]
+const tabOffsetsDesktop = [0, 18, 6, 24]
+const tabOffsetsMobile = [0, 4, 0, 4]
 
 export default function StudentTransformation() {
   const [active, setActive] = useState<CategoryKey>('class')
+  const [isMobile, setIsMobile] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const activeIndex = categories.findIndex((c) => c.key === active)
   const activeCategory = categories[activeIndex]
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   return (
     <section
@@ -145,7 +155,7 @@ export default function StudentTransformation() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActive(c.key)}
-                  className="font-body text-[11px] sm:text-sm tracking-[0.06em] uppercase px-3 sm:px-5 pt-3 pb-4 sm:pb-5 transition-all duration-300"
+                  className="font-body text-[10px] sm:text-sm tracking-[0.04em] sm:tracking-[0.06em] uppercase px-2 sm:px-5 pt-2.5 sm:pt-3 pb-3 sm:pb-5 transition-all duration-300"
                   style={{
                     color: isActive ? 'var(--dark)' : 'rgba(250,246,239,0.75)',
                     background: isActive ? c.color : 'rgba(250,246,239,0.07)',
@@ -154,7 +164,7 @@ export default function StudentTransformation() {
                     borderRight: `1px solid ${isActive ? c.color : 'rgba(250,246,239,0.2)'}`,
                     borderBottom: 'none',
                     clipPath: 'polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%)',
-                    transform: `translateY(${isActive ? 0 : tabOffsets[i]}px) scale(${isActive ? 1.06 : 1})`,
+                    transform: `translateY(${isActive ? 0 : (isMobile ? tabOffsetsMobile : tabOffsetsDesktop)[i]}px) scale(${isActive ? 1.06 : 1})`,
                     boxShadow: isActive ? '0 10px 24px -8px rgba(0,0,0,0.45)' : 'none',
                   }}
                 >
@@ -173,12 +183,12 @@ export default function StudentTransformation() {
         >
           {/* Left — hero image */}
           <AnimateIn variant="fadeIn" className="lg:h-[560px]">
-            <div className="relative h-[320px] sm:h-[420px] lg:h-full overflow-hidden clip-chamfer">
+            <div className="relative h-[400px] sm:h-[420px] lg:h-full overflow-hidden clip-chamfer">
               <Image
                 src={activeCategory.hero.src}
                 alt={activeCategory.hero.alt}
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 380px"
                 priority={false}
               />
@@ -188,14 +198,11 @@ export default function StudentTransformation() {
               />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <span
-                  className="inline-block text-[10px] uppercase tracking-[0.1em] font-body px-2.5 py-1 mb-2"
+                  className="inline-block text-[10px] uppercase tracking-[0.1em] font-body px-2.5 py-1"
                   style={{ background: activeCategory.color, color: 'var(--dark)' }}
                 >
                   {activeCategory.label}
                 </span>
-                <p className="font-body text-ivory text-sm leading-relaxed">
-                  {activeCategory.hero.caption}
-                </p>
               </div>
             </div>
           </AnimateIn>
@@ -241,9 +248,6 @@ export default function StudentTransformation() {
                       >
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <p className="absolute bottom-2.5 left-3 right-3 font-body text-ivory/85 text-xs leading-snug">
-                        {img.caption}
-                      </p>
                     </div>
                   </div>
                 </AnimateStaggerItem>

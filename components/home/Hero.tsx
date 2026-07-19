@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
@@ -13,8 +13,8 @@ const slides = [
     position: 'center top',
   },
   {
-    src: '/images/DSC_0129.JPG.jpeg',
-    alt: 'Solo Odissi dancer framed in a temple archway — Nrutyatrupti',
+    src: '/images/Hero_Section.jpg',
+    alt: 'Odissi dancer in classical attire — Nrutyatrupti',
     position: 'center top',
   },
   {
@@ -25,6 +25,11 @@ const slides = [
   {
     src: '/images/0S6A7469.JPG.jpeg',
     alt: 'Solo Odissi dancer under dramatic stage lighting — Nrutyatrupti',
+    position: 'center top',
+  },
+  {
+    src: '/images/Hero_Section1.jpg',
+    alt: 'Odissi dancer on stage — Nrutyatrupti',
     position: 'center top',
   },
 ]
@@ -102,7 +107,7 @@ export default function Hero() {
 
             <motion.p
               className="mt-5 font-display italic"
-              style={{ color: '#8B7355', fontSize: 'clamp(1rem, 1.3vw, 1.15rem)' }}
+              style={{ color: 'var(--brown-muted)', fontSize: 'clamp(1rem, 1.3vw, 1.15rem)' }}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.6 }}
@@ -112,7 +117,7 @@ export default function Hero() {
 
             <motion.p
               className="mt-5 font-body leading-relaxed max-w-md"
-              style={{ color: '#5C4A35', fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)' }}
+              style={{ color: 'var(--brown-deep)', fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)' }}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.6 }}
@@ -157,7 +162,7 @@ export default function Hero() {
               <span className="font-display text-base leading-none" style={{ color: 'var(--dark-warm)' }}>
                 {siteConfig.google.rating}★
               </span>
-              <span className="text-xs font-body" style={{ color: '#6B5443' }}>
+              <span className="text-xs font-body" style={{ color: 'var(--brown)' }}>
                 {siteConfig.google.reviewCount} Google Reviews
               </span>
             </motion.a>

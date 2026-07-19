@@ -3,7 +3,7 @@ export const siteConfig = {
   fullName: 'Nrutyatrupti Odissi Dance Academy',
   tagline: 'Where Tradition Meets Grace',
   description:
-    'Odissi classical and Odia folk dance academy in Bhubaneswar. Trained under the lineage of Guru Deba Prasad Das, led by B-Grade Doordarshan artist and CCRT Senior Scholar Smt. Truptismita Tarini.',
+    'Odissi classical & Odia folk dance academy in Bhubaneswar — led by B-Grade Doordarshan artist and CCRT Senior Scholar Smt. Truptismita Tarini.',
   founded: '2021',
   email: 'nrutyatrupti@gmail.com',
   phone: '+91 87633 08929',
@@ -59,15 +59,15 @@ export const founderData = {
   name: 'Smt. Truptismita Tarini',
   title: 'Founder & Mentor',
   shortBio:
-    'Trained for 20 years in the living lineage of the legendary Guru Deba Prasad Das, under the personal guidance of Gurushree Swayam Pragyan Sahoo. A B-Grade artist recognised by Doordarshan Kendra (Prasar Bharati, Government of India) and recipient of the prestigious CCRT Senior Scholarship from the Ministry of Culture, India (2018).',
-  image: '/images/DSC_0115.JPG.jpeg',
-  imageAlt: 'Smt. Truptismita Tarini in Odissi attire at an ancient Odia temple',
+    'Trained for 20 years in the living lineage of the legendary Guru Deba Prasad Das, under the personal guidance of Guru Smt. Swayam Pragnya Sahoo. A B-Grade artist recognised by Doordarshan Kendra (Prasar Bharati, Government of India) and recipient of the prestigious CCRT Senior Scholarship from the Ministry of Culture, India (2018).',
+  image: '/images/Trupti_Portrait.jpg',
+  imageAlt: 'Smt. Truptismita Tarini, Founder & Mentor, portrait',
   credentials: [
     'B-Grade Artist · Doordarshan Kendra, Prasar Bharati, Govt. of India',
     'CCRT Senior Scholar 2018 · Ministry of Culture, India',
     '20 Years of Odissi in the Deba Prasad Das lineage',
     'Visharad Ditiya · Akhila Bharatiya Gandharva Maha Vidyalaya, Mumbai',
-    'Shastri Purna · Odisha Sangeet Natak Akademi, Bhubaneswar',
+    'Sangeet Bhaskar (Odissi Dance) · Pracheen Kala Kendra, Chandigarh',
   ],
   highlights: [
     { label: '20+', description: 'Years of Odissi practice' },
@@ -78,9 +78,9 @@ export const founderData = {
 }
 
 export const gurushreeData = {
-  name: 'Gurushree Swayam Pragyan Sahoo',
+  name: 'Guru Smt. Swayam Pragnya Sahoo',
   title: 'Our Guru',
-  bio: 'The Guru and Lead Artist of Nrutyatrupti — the very guru under whom Founder Truptismita Tarini has trained for over two decades in the Deba Prasad Das style of Odissi. A lifetime devoted to preserving the classical traditions of Odisha, his guidance forms the technical and spiritual backbone of the academy.',
+  bio: 'An accomplished Odissi exponent of the Deba Prasad Das Gharana, trained under Guru Sri Durga Charan Ranbir. Principal and General Secretary of Pragnya Nrutyayan, Bhubaneswar, with over two decades of teaching experience and the very guru under whom Founder Truptismita Tarini has trained. A B-Grade artist and approved anchor with Doordarshan Kendra, Bhubaneswar, and an approved theory & practical examiner for Pracheen Kala Kendra, Chandigarh. Founder of the National Gurushree Samman Dance Festival, held annually since 2011 — her guidance forms the technical and spiritual backbone of the academy.',
   image: '/images/embedded-4-gurushree-swayam-pragyan-sahoo-senior-guru-at-nrut.png',
-  imageAlt: 'Gurushree Swayam Pragyan Sahoo, Our Guru at Nrutyatrupti',
+  imageAlt: 'Guru Smt. Swayam Pragnya Sahoo, Our Guru at Nrutyatrupti',
 }

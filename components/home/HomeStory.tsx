@@ -17,7 +17,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'scale', 'imageReveal']}
         bg="transparent"
-        overlap={0.12}
         topBorder={<TempleBorder variant="ivory" position="top" />}
         bottomBorder={<TempleBorder variant="maroon" position="bottom" />}
       >
@@ -27,7 +26,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'scale', 'blur']}
         bg="transparent"
-        overlap={0.12}
         topBorder={<TempleBorder variant="teal" position="top" />}
       >
         <StudentTransformation />
@@ -36,7 +34,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade']}
         bg="transparent"
-        overlap={0}
         bottomBorder={<TempleBorder variant="teal" position="bottom" />}
       >
         <StatsSection />
@@ -45,7 +42,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'blur', 'textReveal']}
         bg="transparent"
-        overlap={0.1}
       >
         <Testimonials />
       </StorySection>
@@ -53,7 +49,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'parallax']}
         bg="transparent"
-        overlap={0.1}
         bottomBorder={<TempleBorder variant="ivory" position="bottom" />}
       >
         <InstagramReels />
@@ -62,7 +57,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'scale', 'imageReveal']}
         bg="transparent"
-        overlap={0.1}
         topBorder={<TempleBorder variant="ivory" position="top" />}
         bottomBorder={<TempleBorder variant="ivory" position="bottom" />}
       >
@@ -72,7 +66,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'blur']}
         bg="transparent"
-        overlap={0.1}
         topBorder={<TempleBorder variant="gold" position="top" />}
         bottomBorder={<TempleBorder variant="gold" position="bottom" />}
       >

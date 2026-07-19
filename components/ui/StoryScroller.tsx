@@ -38,7 +38,15 @@ export interface StorySectionProps {
   className?: string
   /** 0-based index — injected by StoryScroller, don't set manually */
   _index?: number
-  /** Overlap ratio with the previous section (0–1). Default 0.35 */
+  /**
+   * Overlap with the previous section, in pixels. Default 24.
+   * Deliberately a fixed px value, not vh: vh scales with viewport
+   * *height* while section padding (py-section) scales with viewport
+   * *width*, so on tall/narrow screens a vh-based overlap could exceed
+   * the next section's top padding and pull its heading text up under
+   * the previous section's border/content. A small fixed px overlap
+   * stays safely inside that padding on every screen size.
+   */
   overlap?: number
   /** Background color so overlapping sections stack cleanly */
   bg?: string
@@ -61,7 +69,7 @@ export function StorySection({
   effects = ['fade'],
   className = '',
   _index = 0,
-  overlap = 0.35,
+  overlap = 24,
   bg,
   topBorder,
   bottomBorder,
@@ -212,7 +220,7 @@ export function StorySection({
       style={{
         position: 'relative',
         zIndex: total - _index,
-        marginTop: isFirst ? 0 : `-${overlap * 100}vh`,
+        marginTop: isFirst ? 0 : `-${overlap}px`,
         backgroundColor: bg,
         willChange: 'auto',
       }}

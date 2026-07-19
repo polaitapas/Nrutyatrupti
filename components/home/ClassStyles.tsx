@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import { danceStyles } from '@/lib/data/classes'
@@ -25,7 +25,7 @@ export default function ClassStyles() {
             <AnimateIn delay={0.25}>
               <p className="lede mt-4">
                 Classical and folk traditions of Odisha, taught with equal devotion. A glimpse
-                of three — the full curriculum has six, including online and certification tracks.
+                of three — the full curriculum has five, including online and certification tracks.
               </p>
             </AnimateIn>
           </div>
@@ -78,7 +78,7 @@ export default function ClassStyles() {
                 >
                   {style.title}
                 </h3>
-                <p className="font-body text-sm leading-relaxed flex-1" style={{ color: '#6B5443' }}>
+                <p className="font-body text-sm leading-relaxed flex-1" style={{ color: 'var(--brown)' }}>
                   {style.description}
                 </p>
 
@@ -87,7 +87,7 @@ export default function ClassStyles() {
                     <span
                       key={level}
                       className="text-[10px] tracking-wider uppercase font-body px-2 py-1"
-                      style={{ color: '#8B7355', border: '1px solid rgba(139,115,85,0.25)' }}
+                      style={{ color: 'var(--brown-muted)', border: '1px solid rgba(139,115,85,0.25)' }}
                     >
                       {level}
                     </span>

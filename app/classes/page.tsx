@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+﻿import { Metadata } from 'next'
 import { Clock, Users, Globe, ChevronDown, Star, Award, Calendar } from 'lucide-react'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import EnquiryTrigger from '@/components/ui/EnquiryTrigger'
@@ -11,7 +11,7 @@ const honourIcons = { Star, Award }
 export const metadata: Metadata = {
   title: 'Classes, Achievements & Events',
   description:
-    'Odissi classical, Sambalpuri folk, Odia folk, fusion and online dance classes at Nrutyatrupti, Bhubaneswar — batch timings, achievements timeline, and the yearly calendar of showcases and camps.',
+    'Odissi classical, Sambalpuri/Folk, semi classical & online dance classes at Nrutyatrupti, Bhubaneswar — batch timings, achievements & yearly calendar.',
   alternates: { canonical: '/classes' },
 }
 
@@ -20,7 +20,7 @@ const eventTypes = [
   { tag: 'Monthly · Ongoing', title: 'Nrutya Maasa', body: 'A monthly student showcase — an intimate, regular stage to perform, receive feedback, and build confidence before an audience.' },
   { tag: 'Tradition · July', title: 'Guru Purnima', body: 'A devotional offering to our teachers, with rituals, performances and the lineage blessing that binds every student to the tradition of Odissi.' },
   { tag: 'Competition · National', title: 'National Competitions', body: 'Our advanced students travel to represent Nrutyatrupti at India\'s premier classical dance competitions — continuing a tradition that began on Odisha\'s own stages.' },
-  { tag: 'Certification · Year-round', title: 'Graded Examinations', body: 'Periodic structured examinations leading to recognised certificates from Akhila Bharatiya Gandharva Maha Vidyalaya and Odisha Sangeet Natak Akademi.' },
+  { tag: 'Certification · Year-round', title: 'Graded Examinations', body: 'Periodic structured examinations leading to recognised certificates from Akhila Bharatiya Gandharva Maha Vidyalaya and Pracheen Kala Kendra, Chandigarh.' },
   { tag: 'Intensive · Seasonal', title: 'Summer & Festival Camps', body: 'Focused multi-day camps built around specific ragas, abhinaya, or folk forms — open to students of all levels, run during school holidays.' },
 ]
 
@@ -46,7 +46,7 @@ export default function ClassesPage() {
           </AnimateIn>
           <AnimateIn delay={0.2}>
             <p className="lede mt-4 text-ivory/55">
-              Six forms. Four batches. A career of national recognition, and a full calendar
+              Five forms. Three batches. A career of national recognition, and a full calendar
               of showcases and camps — everything you need to know before you enrol.
             </p>
           </AnimateIn>
@@ -89,12 +89,12 @@ export default function ClassesPage() {
                   <h3 className="font-display font-light mb-3" style={{ fontSize: '1.6rem', color: 'var(--dark-warm)' }}>
                     {style.title}
                   </h3>
-                  <p className="font-body text-sm leading-relaxed flex-1" style={{ color: '#6B5443' }}>
+                  <p className="font-body text-sm leading-relaxed flex-1" style={{ color: 'var(--brown)' }}>
                     {style.description}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {style.levels.map((l) => (
-                      <span key={l} className="text-[10px] tracking-wider uppercase font-body px-2.5 py-1 border border-stone/40" style={{ color: '#8B7355' }}>
+                      <span key={l} className="text-[10px] tracking-wider uppercase font-body px-2.5 py-1 border border-stone/40" style={{ color: 'var(--brown-muted)' }}>
                         {l}
                       </span>
                     ))}
@@ -117,7 +117,7 @@ export default function ClassesPage() {
               When do <em>classes run?</em>
             </h2>
             <p className="lede mt-4">
-              Tuesday &amp; Saturday sessions, grouped by age and level. A free trial class is
+              Tuesday &amp; Saturday sessions, grouped by experience level. A free trial class is
               available before you commit.
             </p>
           </AnimateIn>
@@ -142,9 +142,9 @@ export default function ClassesPage() {
                   {'nameOdia' in batch && (
                     <div className="font-display italic text-xs mb-2" style={{ color: 'var(--gold)', opacity: 0.6 }}>{batch.nameOdia}</div>
                   )}
-                  <div className="font-body text-sm mb-2" style={{ color: '#8B7355' }}>{batch.days}</div>
+                  <div className="font-body text-sm mb-2" style={{ color: 'var(--brown-muted)' }}>{batch.days}</div>
                   <div className="font-body font-medium text-base mb-2" style={{ color: 'var(--dark-warm)' }}>{batch.time}</div>
-                  <div className="font-body text-xs leading-relaxed" style={{ color: '#8B7355' }}>
+                  <div className="font-body text-xs leading-relaxed" style={{ color: 'var(--brown-muted)' }}>
                     <span className="flex items-center gap-1.5 mb-1">
                       <Users size={11} aria-hidden="true" /> {batch.ages}
                     </span>
@@ -155,7 +155,7 @@ export default function ClassesPage() {
             ))}
           </AnimateStagger>
           <AnimateIn delay={0.4} className="mt-8 text-center">
-            <p className="font-body text-sm" style={{ color: '#8B7355' }}>
+            <p className="font-body text-sm" style={{ color: 'var(--brown-muted)' }}>
               Fees are discussed personally.{' '}
               <EnquiryTrigger className="underline underline-offset-2" >
                 <span style={{ color: 'var(--maroon)' }}>Send an enquiry</span>
@@ -212,7 +212,7 @@ export default function ClassesPage() {
                     <h3 className="font-display font-light text-xl mb-3" style={{ color: 'var(--dark-warm)' }}>
                       {title}
                     </h3>
-                    <p className="font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>
+                    <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--brown)' }}>
                       {body}
                     </p>
                   </div>
@@ -272,14 +272,14 @@ export default function ClassesPage() {
                               )}
                               <div>
                                 <div className="font-body font-medium text-sm" style={{ color: 'var(--dark-warm)' }}>{event.title}</div>
-                                <div className="font-body text-xs mt-1 leading-relaxed" style={{ color: '#8B7355' }}>
+                                <div className="font-body text-xs mt-1 leading-relaxed" style={{ color: 'var(--brown-muted)' }}>
                                   {event.detail}
                                   {event.venue && (
-                                    <span className="ml-2" style={{ color: '#8B7355', opacity: 0.6 }}>· {event.venue}</span>
+                                    <span className="ml-2" style={{ color: 'var(--brown-muted)', opacity: 0.6 }}>· {event.venue}</span>
                                   )}
                                 </div>
                                 {event.date && event.date !== yearGroup.year && (
-                                  <div className="font-body text-xs mt-0.5" style={{ color: '#8B7355', opacity: 0.6 }}>{event.date}</div>
+                                  <div className="font-body text-xs mt-0.5" style={{ color: 'var(--brown-muted)', opacity: 0.6 }}>{event.date}</div>
                                 )}
                               </div>
                             </div>
@@ -325,7 +325,7 @@ export default function ClassesPage() {
                     </span>
                   </div>
                   <h3 className="font-display font-light text-xl mb-3" style={{ color: 'var(--dark-warm)' }}>{event.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>{event.body}</p>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--brown)' }}>{event.body}</p>
                 </div>
               </AnimateStaggerItem>
             ))}
@@ -358,7 +358,7 @@ export default function ClassesPage() {
                       aria-hidden="true"
                     />
                   </summary>
-                  <p className="mt-4 font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>
+                  <p className="mt-4 font-body text-sm leading-relaxed" style={{ color: 'var(--brown)' }}>
                     {faq.a}
                   </p>
                 </details>
