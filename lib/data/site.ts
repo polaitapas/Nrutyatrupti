@@ -66,7 +66,7 @@ export const founderData = {
     'B-Grade Artist · Doordarshan Kendra, Prasar Bharati, Govt. of India',
     'CCRT Senior Scholar 2018 · Ministry of Culture, India',
     '20 Years of Odissi in the Deba Prasad Das lineage',
-    'Visharad Ditiya · Akhila Bharatiya Gandharva Maha Vidyalaya, Mumbai',
+    'Visharad · Akhila Bharatiya Gandharva Maha Vidyalaya, Mumbai',
     'Sangeet Bhaskar (Odissi Dance) · Pracheen Kala Kendra, Chandigarh',
   ],
   highlights: [
