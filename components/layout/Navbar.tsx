@@ -8,6 +8,7 @@ import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { siteConfig } from '@/lib/data/site'
 import { useEnquiry } from '@/components/ui/EnquiryModal'
+import { useScrollLock } from '@/lib/overlayLock'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -34,10 +35,7 @@ export default function Navbar() {
     setOpen(false)
   }, [pathname])
 
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [open])
+  useScrollLock(open)
 
   return (
     <>

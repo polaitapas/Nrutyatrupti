@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import {
   createContext,
@@ -12,6 +12,9 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { X, Send, Check, ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/data/site'
+import { enquiryClassOptions } from '@/lib/data/classes'
+import { sanitizePhone } from '@/lib/utils'
+import { useScrollLock, isOverlayOpen } from '@/lib/overlayLock'
 
 type EnquiryContextValue = {
   open: () => void
@@ -28,16 +31,6 @@ export function useEnquiry() {
 const POPUP_FIRST_MS = 60000
 const POPUP_STEP_MS = 30000
 const POPUP_MAX_MS = 180000
-
-const classOptions = [
-  'Odissi Classical',
-  'Sambalpuri Folk',
-  'Odia Folk',
-  'Fusion',
-  'Theory & Certification',
-  'Online Classes',
-  'Not Sure Yet',
-]
 
 type FormState = {
   name: string
@@ -87,7 +80,7 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
     let delay = POPUP_FIRST_MS
     const schedule = () => {
       timer = setTimeout(() => {
-        if (!isOpenRef.current) setIsOpen(true)
+        if (!isOpenRef.current && !isOverlayOpen()) setIsOpen(true)
         delay = Math.min(delay + POPUP_STEP_MS, POPUP_MAX_MS)
         schedule()
       }, delay)
@@ -96,12 +89,7 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
     return () => clearTimeout(timer)
   }, [submitted])
 
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
+  useScrollLock(isOpen)
 
   useEffect(() => {
     if (!isOpen) return
@@ -211,7 +199,7 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
                 >
                   Free <em style={{ color: 'var(--maroon)' }}>Demo Class</em>
                 </h2>
-                <p className="font-body text-sm mt-2" style={{ color: '#8B7355' }}>
+                <p className="font-body text-sm mt-2" style={{ color: 'var(--brown-muted)' }}>
                   Share a few details and we&apos;ll set up your complimentary trial session.
                 </p>
 
@@ -254,7 +242,7 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
                           value={form[field.id]}
                           onChange={(e) => {
                             const raw = e.target.value
-                            const value = field.id === 'phone' ? raw.replace(/\D/g, '').slice(0, 10) : raw
+                            const value = field.id === 'phone' ? sanitizePhone(raw) : raw
                             setForm((f) => ({ ...f, [field.id]: value }))
                             if (errors[field.id]) setErrors((er) => ({ ...er, [field.id]: '' }))
                           }}
@@ -313,7 +301,7 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
                           }}
                         >
                           <option value="">Select…</option>
-                          {classOptions.map((opt) => (
+                          {enquiryClassOptions.map((opt) => (
                             <option key={opt} value={opt}>
                               {opt}
                             </option>
@@ -379,7 +367,7 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
                       Request For Demo
                       <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </motion.button>
-                    <p className="text-xs font-body text-center" style={{ color: '#8B7355' }}>
+                    <p className="text-xs font-body text-center" style={{ color: 'var(--brown-muted)' }}>
                       This will open WhatsApp with your request pre-filled.
                     </p>
                   </form>

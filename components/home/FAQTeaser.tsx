@@ -1,23 +1,15 @@
-'use client'
+﻿'use client'
 
 import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { ChevronDown, ArrowRight, Send, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
-import { faqs } from '@/lib/data/classes'
+import { faqs, enquiryClassOptions } from '@/lib/data/classes'
+import { siteConfig } from '@/lib/data/site'
+import { sanitizePhone } from '@/lib/utils'
 
 const preview = faqs.slice(0, 4)
-
-const classOptions = [
-  'Odissi Classical',
-  'Sambalpuri Folk',
-  'Odia Folk',
-  'Fusion',
-  'Theory & Certification',
-  'Online Classes',
-  'Not Sure Yet',
-]
 
 type FormState = {
   name: string
@@ -49,12 +41,13 @@ export default function FAQTeaser() {
 
     try {
       const data = new FormData(formRef.current!)
-      const res = await fetch('https://formsubmit.co/ajax/nrutyatrupti@gmail.com', {
+      const res = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: data,
       })
-      if (res.ok) {
+      const result = await res.json()
+      if (res.ok && String(result.success) === 'true') {
         setStatus('sent')
         setForm(emptyForm)
       } else {
@@ -99,7 +92,7 @@ export default function FAQTeaser() {
                         aria-hidden="true"
                       />
                     </summary>
-                    <p className="mt-4 font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>
+                    <p className="mt-4 font-body text-sm leading-relaxed" style={{ color: 'var(--brown)' }}>
                       {faq.a}
                     </p>
                   </details>
@@ -139,7 +132,7 @@ export default function FAQTeaser() {
               >
                 Have a <em style={{ color: 'var(--maroon)' }}>question?</em>
               </h3>
-              <p className="font-body text-sm mt-2" style={{ color: '#8B7355' }}>
+              <p className="font-body text-sm mt-2" style={{ color: 'var(--brown-muted)' }}>
                 Drop us a message and we&apos;ll get back to you shortly.
               </p>
 
@@ -157,7 +150,7 @@ export default function FAQTeaser() {
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} className="mt-6 space-y-4">
-                  <input type="hidden" name="_subject" value="New Enquiry — Nrutyatrupti" />
+                  <input type="hidden" name="_subject" value={`New Enquiry — ${siteConfig.name}`} />
                   <input type="hidden" name="_captcha" value="false" />
                   <input type="hidden" name="_template" value="table" />
 
@@ -198,12 +191,14 @@ export default function FAQTeaser() {
                         name="Phone"
                         type="tel"
                         required
+                        pattern="[0-9]{10}"
+                        title="Enter a 10-digit phone number"
                         placeholder="10-digit number"
                         value={form.phone}
                         onChange={(e) =>
                           setForm((f) => ({
                             ...f,
-                            phone: e.target.value.replace(/\D/g, '').slice(0, 10),
+                            phone: sanitizePhone(e.target.value),
                           }))
                         }
                         className="w-full px-4 py-3 font-body text-sm transition-colors focus:outline-none"
@@ -248,7 +243,7 @@ export default function FAQTeaser() {
                       style={inputStyle}
                     >
                       <option value="">Select…</option>
-                      {classOptions.map((opt) => (
+                      {enquiryClassOptions.map((opt) => (
                         <option key={opt} value={opt}>
                           {opt}
                         </option>

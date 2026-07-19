@@ -5,6 +5,7 @@ import { X, Download, ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import { galleryImages, type GalleryCategory } from '@/lib/data/gallery'
+import { useScrollLock } from '@/lib/overlayLock'
 
 type Bucket = 'all' | 'class' | 'stage' | 'recognition' | 'founder'
 
@@ -39,6 +40,8 @@ export default function GalleryClient() {
   const lastTriggerRef = useRef<HTMLElement | null>(null)
 
   const filtered = active === 'all' ? galleryImages : galleryImages.filter((g) => bucketOf(g.category) === active)
+
+  useScrollLock(lightbox !== null)
 
   const close = useCallback(() => setLightbox(null), [])
   const prev = useCallback(() => setLightbox((i) => (i !== null ? (i - 1 + filtered.length) % filtered.length : null)), [filtered.length])
@@ -166,12 +169,6 @@ export default function GalleryClient() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                      <p className="font-body text-ivory text-xs">{img.caption}</p>
-                      {img.year && (
-                        <p className="font-body text-gold/60 text-[10px] mt-0.5">{img.year}</p>
-                      )}
-                    </div>
                   </div>
                 </button>
               </AnimateStaggerItem>
@@ -232,13 +229,7 @@ export default function GalleryClient() {
                 className="object-contain max-h-[75vh] w-auto mx-auto"
                 style={{ maxHeight: '75vh' }}
               />
-              <div className="mt-4 flex items-center justify-between">
-                <div>
-                  <p className="font-body text-ivory/80 text-sm">{filtered[lightbox].caption}</p>
-                  {filtered[lightbox].year && (
-                    <p className="font-body text-gold/60 text-xs mt-0.5">{filtered[lightbox].year}</p>
-                  )}
-                </div>
+              <div className="mt-4 flex items-center justify-end">
                 <a
                   href={filtered[lightbox].src}
                   download

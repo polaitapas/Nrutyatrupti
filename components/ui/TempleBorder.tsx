@@ -190,24 +190,6 @@ export default function TempleBorder({
           },
         })
 
-        const arches = el.querySelector('.temple-border-arches')
-        if (arches) {
-          gsap.fromTo(
-            arches,
-            { opacity: 0, y: 2 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 92%',
-                toggleActions: 'play none none none',
-              },
-            },
-          )
-        }
       })
     })
 

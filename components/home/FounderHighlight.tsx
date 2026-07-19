@@ -1,4 +1,4 @@
-import Image from 'next/image'
+﻿import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Award, Star } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
@@ -92,7 +92,7 @@ export default function FounderHighlight() {
             </AnimateIn>
 
             <AnimateIn delay={0.2}>
-              <p className="mt-5 font-body leading-relaxed text-base" style={{ color: '#6B5443' }}>
+              <p className="mt-5 font-body leading-relaxed text-base" style={{ color: 'var(--brown)' }}>
                 {founderData.shortBio}
               </p>
             </AnimateIn>
@@ -109,7 +109,7 @@ export default function FounderHighlight() {
                   &ldquo;Odissi is not something you perform. It is something you become —
                   one mudra, one breath, one guru at a time.&rdquo;
                 </p>
-                <span className="mt-2 block text-xs tracking-[0.15em] uppercase font-body" style={{ color: '#8B7355' }}>
+                <span className="mt-2 block text-xs tracking-[0.15em] uppercase font-body" style={{ color: 'var(--brown-muted)' }}>
                   Guiding Philosophy
                 </span>
               </blockquote>
@@ -125,7 +125,7 @@ export default function FounderHighlight() {
                       style={{ color: 'var(--gold)' }}
                       aria-hidden="true"
                     />
-                    <span className="font-body text-sm leading-relaxed" style={{ color: '#5C4A35' }}>
+                    <span className="font-body text-sm leading-relaxed" style={{ color: 'var(--brown-deep)' }}>
                       {cred}
                     </span>
                   </li>
@@ -151,7 +151,7 @@ export default function FounderHighlight() {
                     >
                       {h.label}
                     </div>
-                    <div className="text-xs font-body mt-1 leading-tight" style={{ color: '#8B7355' }}>
+                    <div className="text-xs font-body mt-1 leading-tight" style={{ color: 'var(--brown-muted)' }}>
                       {h.description}
                     </div>
                   </div>
@@ -179,7 +179,7 @@ export default function FounderHighlight() {
                           {m.year}
                         </span>
                       </div>
-                      <span className="font-body text-xs leading-snug" style={{ color: '#6B5443' }}>
+                      <span className="font-body text-xs leading-snug" style={{ color: 'var(--brown)' }}>
                         {m.title}
                       </span>
                     </li>
@@ -195,7 +195,7 @@ export default function FounderHighlight() {
                 <Star size={12} className="text-gold fill-gold" aria-hidden="true" />
                 <Star size={12} className="text-gold fill-gold" aria-hidden="true" />
                 <Star size={12} className="text-gold fill-gold" aria-hidden="true" />
-                <span className="text-xs font-body ml-1" style={{ color: '#8B7355' }}>
+                <span className="text-xs font-body ml-1" style={{ color: 'var(--brown-muted)' }}>
                   On stage since 2007 · 50+ national performances
                 </span>
               </div>

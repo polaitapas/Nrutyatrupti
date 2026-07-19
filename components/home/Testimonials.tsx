@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import { Star, Quote } from 'lucide-react'
 import { testimonials } from '@/lib/data/testimonials'
@@ -33,7 +33,7 @@ export default function Testimonials() {
                   <Star key={i} size={13} className="text-gold fill-gold" aria-hidden="true" />
                 ))}
               </span>
-              <span style={{ color: '#6B5443' }}>
+              <span style={{ color: 'var(--brown)' }}>
                 <span className="font-medium" style={{ color: 'var(--dark-warm)' }}>{siteConfig.google.rating}</span> from{' '}
                 {siteConfig.google.reviewCount} Google reviews
               </span>
@@ -61,7 +61,7 @@ export default function Testimonials() {
                 />
                 <blockquote
                   className="font-body leading-relaxed text-sm italic"
-                  style={{ color: '#5C4A35' }}
+                  style={{ color: 'var(--brown-deep)' }}
                 >
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>

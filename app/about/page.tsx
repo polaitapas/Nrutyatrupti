@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+﻿import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Award, ArrowRight } from 'lucide-react'
@@ -9,7 +9,7 @@ import { featuredHonours } from '@/lib/data/achievements'
 export const metadata: Metadata = {
   title: 'Our Story',
   description:
-    "Nrutyatrupti is Bhubaneswar's dedicated home for Odissi classical dance and the folk traditions of Odisha — founded 2021, led by Truptismita Tarini under the guidance of Gurushree Swayam Pragyan Sahoo.",
+    "Nrutyatrupti — Bhubaneswar's home for Odissi classical dance and Odisha's folk traditions, led by Truptismita Tarini under Guru Swayam Pragnya Sahoo.",
   alternates: { canonical: '/about' },
 }
 
@@ -18,7 +18,7 @@ const pillars = [
   { title: 'Temple Roots', body: "Our postures are drawn from the sculpted apsaras of the Konark Sun Temple and the devotion of the Jagannath shrine at Puri — living architecture made movement." },
   { title: 'All Ages Welcome', body: 'Children to adults — every student finds their pace, their place, and their own deep relationship with this ancient art. No upper age limit, no prior experience required.' },
   { title: 'The Stage', body: 'Regular performances at cultural festivals across Odisha and India, building confidence through the act of sharing this art with an audience.' },
-  { title: 'Certification', body: 'Structured progression through recognised examinations from Akhila Bharatiya Gandharva Maha Vidyalaya Mandal and Odisha Sangeet Natak Akademi.' },
+  { title: 'Certification', body: 'Structured progression through recognised examinations from Akhila Bharatiya Gandharva Maha Vidyalaya Mandal and Pracheen Kala Kendra, Chandigarh.' },
   { title: 'Online Reach', body: 'Live, interactive classes for students across India and abroad — the same devotion and guidance, wherever you are in the world.' },
 ]
 
@@ -79,15 +79,15 @@ export default function AboutPage() {
                 <h2 className="section-title" style={{ color: 'var(--dark-warm)' }}>
                   Founded in <em>devotion</em>, 2021
                 </h2>
-                <div className="mt-6 space-y-4 font-body leading-relaxed text-base" style={{ color: '#5C4A35' }}>
+                <div className="mt-6 space-y-4 font-body leading-relaxed text-base" style={{ color: 'var(--brown-deep)' }}>
                   <p>
                     Nrutyatrupti was founded in 2021 by{' '}
                     <strong style={{ color: 'var(--dark-warm)' }}>Truptismita Tarini</strong>,
                     our Founder &amp; Mentor, under the guidance of{' '}
-                    <strong style={{ color: 'var(--dark-warm)' }}>Gurushree Swayam Pragyan Sahoo</strong>{' '}
+                    <strong style={{ color: 'var(--dark-warm)' }}>Guru Smt. Swayam Pragnya Sahoo</strong>{' '}
                     — Our Guru, and the figure whose teaching underpins everything we do. The
                     academy is affiliated with{' '}
-                    <strong style={{ color: 'var(--dark-warm)' }}>Pragyan Nrutya Academy</strong>.
+                    <strong style={{ color: 'var(--dark-warm)' }}>Pragnya Nrutyayan</strong>.
                   </p>
                   <p>
                     We were founded on a single belief — that the discipline and devotion of
@@ -136,7 +136,7 @@ export default function AboutPage() {
                   className="font-display font-light text-ivory mt-3"
                   style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', lineHeight: 1.15 }}
                 >
-                  Gurushree Swayam <em style={{ color: 'var(--gold)' }}>Pragyan Sahoo</em>
+                  Guru Smt. Swayam <em style={{ color: 'var(--gold)' }}>Pragnya Sahoo</em>
                 </h2>
               </AnimateIn>
               <AnimateIn delay={0.15}>
@@ -206,7 +206,7 @@ export default function AboutPage() {
                 </h2>
               </AnimateIn>
 
-              <AnimateIn delay={0.15} className="mt-6 space-y-4 font-body leading-relaxed text-base" style={{ color: '#5C4A35' }}>
+              <AnimateIn delay={0.15} className="mt-6 space-y-4 font-body leading-relaxed text-base" style={{ color: 'var(--brown-deep)' }}>
                 <p>{founderData.shortBio}</p>
                 <p>
                   Her stage career began in 2007 and has continued without interruption —
@@ -221,7 +221,7 @@ export default function AboutPage() {
                   {founderData.credentials.map((cred) => (
                     <li key={cred} className="flex items-start gap-3">
                       <Award size={14} className="mt-1 flex-shrink-0" style={{ color: 'var(--gold)' }} aria-hidden="true" />
-                      <span className="font-body text-sm leading-relaxed" style={{ color: '#5C4A35' }}>{cred}</span>
+                      <span className="font-body text-sm leading-relaxed" style={{ color: 'var(--brown-deep)' }}>{cred}</span>
                     </li>
                   ))}
                 </ul>
@@ -239,7 +239,7 @@ export default function AboutPage() {
                       }}
                     >
                       <div className="font-display text-lg" style={{ color: 'var(--gold)' }}>{h.year}</div>
-                      <div className="text-[11px] font-body leading-snug mt-0.5" style={{ color: '#8B7355' }}>{h.title}</div>
+                      <div className="text-[11px] font-body leading-snug mt-0.5" style={{ color: 'var(--brown-muted)' }}>{h.title}</div>
                     </div>
                   ))}
                 </div>
@@ -267,7 +267,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { institution: 'Akhila Bharatiya Gandharva Maha Vidyalaya Mandal, Mumbai', qualifications: 'Prathama through Visharad Ditiya (full classical graded sequence in Odissi)' },
-                  { institution: 'Odisha Sangeet Natak Akademi, Bhubaneswar', qualifications: 'Prarambhik through Shastri Purna — Nrutya Shree, Nrutya Bhushan, Shastri diplomas' },
+                  { institution: 'Pracheen Kala Kendra, Chandigarh', qualifications: 'Sangeet Bhaskar Final (7th Year), Odissi Dance — First Division (2022)' },
                 ].map((q) => (
                   <div
                     key={q.institution}
@@ -281,7 +281,7 @@ export default function AboutPage() {
                     <div className="font-body font-medium text-sm mb-2" style={{ color: 'var(--dark-warm)' }}>
                       {q.institution}
                     </div>
-                    <div className="font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>
+                    <div className="font-body text-sm leading-relaxed" style={{ color: 'var(--brown)' }}>
                       {q.qualifications}
                     </div>
                   </div>
@@ -312,7 +312,7 @@ export default function AboutPage() {
                   }}
                 >
                   <h3 className="font-display font-light text-xl mb-3" style={{ color: 'var(--dark-warm)' }}>{p.title}</h3>
-                  <p className="font-body text-sm leading-relaxed" style={{ color: '#6B5443' }}>{p.body}</p>
+                  <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--brown)' }}>{p.body}</p>
                 </div>
               </AnimateStaggerItem>
             ))}
