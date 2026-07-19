@@ -20,7 +20,7 @@ const eventTypes = [
   { tag: 'Monthly · Ongoing', title: 'Nrutya Maasa', body: 'A monthly student showcase — an intimate, regular stage to perform, receive feedback, and build confidence before an audience.' },
   { tag: 'Tradition · July', title: 'Guru Purnima', body: 'A devotional offering to our teachers, with rituals, performances and the lineage blessing that binds every student to the tradition of Odissi.' },
   { tag: 'Competition · National', title: 'National Competitions', body: 'Our advanced students travel to represent Nrutyatrupti at India\'s premier classical dance competitions — continuing a tradition that began on Odisha\'s own stages.' },
-  { tag: 'Certification · Year-round', title: 'Graded Examinations', body: 'Periodic structured examinations leading to recognised certificates from Akhila Bharatiya Gandharva Maha Vidyalaya and Pracheen Kala Kendra, Chandigarh.' },
+  { tag: 'Certification · Year-round', title: 'Graded Examinations', body: 'Periodic structured examinations leading to recognised certificates from Pracheen Kala Kendra, Chandigarh.' },
   { tag: 'Intensive · Seasonal', title: 'Summer & Festival Camps', body: 'Focused multi-day camps built around specific ragas, abhinaya, or folk forms — open to students of all levels, run during school holidays.' },
 ]
 

@@ -4,7 +4,7 @@ export const danceStyles = [
     title: 'Odissi',
     odia: 'ଓଡ଼ିଶୀ',
     description:
-      "One of India's oldest classical forms — fluid, sculptural, devotional. Taught from beginner to advanced with the complete recital repertoire and graded certification from Pracheen Kala Kendra, Chandigarh & Gandharva Mahavidyalaya.",
+      "One of India's oldest classical forms — fluid, sculptural, devotional. Taught from beginner to advanced with the complete recital repertoire and graded certification from Pracheen Kala Kendra, Chandigarh.",
     levels: ['Beginner', 'Intermediate', 'Advanced', 'Visharad'],
   },
   {
@@ -28,7 +28,7 @@ export const danceStyles = [
     title: 'Theory & Certification',
     odia: 'ତତ୍ତ୍ୱ',
     description:
-      'History, scriptures, mudras and philosophy — leading to recognised graded examinations in Odissi theory and practice from Akhila Bharatiya Gandharva Maha Vidyalaya Mandal, Mumbai & Pracheen Kala Kendra, Chandigarh.',
+      'History, scriptures, mudras and philosophy — leading to recognised graded examinations in Odissi theory and practice from Pracheen Kala Kendra, Chandigarh.',
     levels: ['All levels'],
   },
   {
@@ -100,6 +100,6 @@ export const faqs = [
   },
   {
     q: 'Do you offer certification examinations?',
-    a: 'Yes. We prepare students for graded examinations from the Akhila Bharatiya Gandharva Maha Vidyalaya Mandal, Mumbai, and Pracheen Kala Kendra, Chandigarh — the university that awarded our own founder her Sangeet Bhaskar diploma in Odissi Dance.',
+    a: 'Yes. We prepare students for graded examinations from Pracheen Kala Kendra, Chandigarh — the university that awarded our own founder her Sangeet Bhaskar diploma in Odissi Dance.',
   },
 ]

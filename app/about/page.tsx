@@ -18,7 +18,7 @@ const pillars = [
   { title: 'Temple Roots', body: "Our postures are drawn from the sculpted apsaras of the Konark Sun Temple and the devotion of the Jagannath shrine at Puri — living architecture made movement." },
   { title: 'All Ages Welcome', body: 'Children to adults — every student finds their pace, their place, and their own deep relationship with this ancient art. No upper age limit, no prior experience required.' },
   { title: 'The Stage', body: 'Regular performances at cultural festivals across Odisha and India, building confidence through the act of sharing this art with an audience.' },
-  { title: 'Certification', body: 'Structured progression through recognised examinations from Akhila Bharatiya Gandharva Maha Vidyalaya Mandal and Pracheen Kala Kendra, Chandigarh.' },
+  { title: 'Certification', body: 'Structured progression through recognised examinations from Pracheen Kala Kendra, Chandigarh.' },
   { title: 'Online Reach', body: 'Live, interactive classes for students across India and abroad — the same devotion and guidance, wherever you are in the world.' },
 ]
 
@@ -266,7 +266,7 @@ export default function AboutPage() {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { institution: 'Akhila Bharatiya Gandharva Maha Vidyalaya Mandal, Mumbai', qualifications: 'Prathama through Visharad Ditiya (full classical graded sequence in Odissi)' },
+                  { institution: 'Akhila Bharatiya Gandharva Maha Vidyalaya Mandal, Mumbai', qualifications: 'Prathama through Visharad (full classical graded sequence in Odissi)' },
                   { institution: 'Pracheen Kala Kendra, Chandigarh', qualifications: 'Sangeet Bhaskar Final (7th Year), Odissi Dance — First Division (2022)' },
                 ].map((q) => (
                   <div
