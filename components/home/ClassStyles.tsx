@@ -67,7 +67,7 @@ export default function ClassStyles() {
                   >
                     {style.tag}
                   </span>
-                  <span className="font-display italic text-xl" style={{ color: 'rgba(92,74,53,0.25)' }}>
+                  <span className="font-display italic text-xl" style={{ color: 'var(--maroon)', opacity: 0.45 }}>
                     {style.odia}
                   </span>
                 </div>

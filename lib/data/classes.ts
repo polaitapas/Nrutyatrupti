@@ -77,6 +77,38 @@ export const batches = [
   },
 ]
 
+export const summerIntensive = {
+  duration: '15 Days',
+  curriculum: [
+    {
+      title: 'Abhinaya & Dance Drama',
+      odia: 'ଅଭିନୟ',
+      description:
+        'The art of expression — storytelling through mudra, facial abhinaya and choreographed dance drama, building the skills to portray a character on stage.',
+    },
+    {
+      title: 'Odissi Makeup Classes',
+      odia: 'ପ୍ରସାଧନ',
+      description:
+        'Hands-on training in traditional Odissi stage makeup and adornment — from eye and bindi work to hair and jewellery, so every student can prepare independently for performance.',
+    },
+    {
+      title: 'Taal Classes',
+      odia: 'ତାଳ',
+      description:
+        'Foundational rhythm training — counting, recognising and keeping taal, the base every Odissi dancer builds their footwork and timing on.',
+    },
+    {
+      title: 'Theory',
+      odia: 'ତତ୍ତ୍ୱ',
+      description:
+        'The history, philosophy and vocabulary of Odissi — mudras, ragas and repertoire — rounding out practice with the knowledge behind the movement.',
+    },
+  ],
+  culmination:
+    'The course closes with a live performance in front of invited guests, teachers and parents — a chance for every student to showcase everything learnt over the 15 days.',
+}
+
 export const faqs = [
   {
     q: 'What is the minimum age to join?',

@@ -172,7 +172,7 @@ export default function Hero() {
           <div className="relative mx-auto w-full max-w-lg lg:max-w-2xl">
             <div
               className="relative overflow-hidden rounded-2xl shadow-2xl"
-              style={{ aspectRatio: '4 / 5', background: '#0A0A0A' }}
+              style={{ aspectRatio: '4 / 5', background: 'var(--dark-mid)' }}
             >
               <AnimatePresence initial={false} custom={direction}>
                 <motion.div

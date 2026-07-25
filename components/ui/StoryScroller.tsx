@@ -39,13 +39,11 @@ export interface StorySectionProps {
   /** 0-based index — injected by StoryScroller, don't set manually */
   _index?: number
   /**
-   * Overlap with the previous section, in pixels. Default 24.
-   * Deliberately a fixed px value, not vh: vh scales with viewport
-   * *height* while section padding (py-section) scales with viewport
-   * *width*, so on tall/narrow screens a vh-based overlap could exceed
-   * the next section's top padding and pull its heading text up under
-   * the previous section's border/content. A small fixed px overlap
-   * stays safely inside that padding on every screen size.
+   * Overlap with the previous section, in pixels. Default 0 — sections butt
+   * cleanly. Overlap only existed to tuck decorative border strips over the
+   * seam; with the site's semi-transparent section backgrounds, any overlap
+   * region stacks two tints over the fixed page backdrop and reads as a
+   * muddy band, so avoid it unless a section provides an opaque bg.
    */
   overlap?: number
   /** Background color so overlapping sections stack cleanly */
@@ -69,7 +67,7 @@ export function StorySection({
   effects = ['fade'],
   className = '',
   _index = 0,
-  overlap = 24,
+  overlap = 0,
   bg,
   topBorder,
   bottomBorder,
@@ -88,37 +86,41 @@ export function StorySection({
 
     const ctx = gsap.context(() => {
       // ---- entrance animation (skip for first section) ----
+      // Entrance ranges and amplitudes are deliberately gentle: sections must
+      // read as fully present by the time they reach mid-viewport, and the
+      // motion should be felt more than seen — anything stronger makes the
+      // stacked sections visibly "pop" over each other while scrolling.
       if (!isFirst) {
         const enterTl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: 'top 95%',
-            end: 'top 25%',
-            scrub: 0.8,
+            start: 'top 92%',
+            end: 'top 55%',
+            scrub: 1.2,
           },
         })
 
         if (effects.includes('fade')) {
-          enterTl.fromTo(inner, { opacity: 0 }, { opacity: 1, duration: 1 }, 0)
+          enterTl.fromTo(inner, { opacity: 0.35 }, { opacity: 1, duration: 1, ease: 'power1.out' }, 0)
         }
         if (effects.includes('scale')) {
           enterTl.fromTo(
             inner,
-            { scale: 0.88, transformOrigin: 'center top' },
-            { scale: 1, duration: 1, ease: 'power2.out' },
+            { scale: 0.975, transformOrigin: 'center top' },
+            { scale: 1, duration: 1, ease: 'power1.out' },
             0,
           )
         }
         if (effects.includes('blur')) {
           enterTl.fromTo(
             inner,
-            { filter: 'blur(10px)' },
+            { filter: 'blur(4px)' },
             { filter: 'blur(0px)', duration: 1 },
             0,
           )
         }
         if (effects.includes('parallax')) {
-          enterTl.fromTo(inner, { y: 80 }, { y: 0, duration: 1, ease: 'none' }, 0)
+          enterTl.fromTo(inner, { y: 40 }, { y: 0, duration: 1, ease: 'none' }, 0)
         }
       }
 
@@ -194,16 +196,16 @@ export function StorySection({
         const exitTl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: 'bottom 40%',
+            start: 'bottom 30%',
             end: 'bottom 5%',
-            scrub: 0.8,
+            scrub: 1.2,
           },
         })
 
         if (effects.includes('scale')) {
           exitTl.to(
             inner,
-            { scale: 0.96, duration: 1, ease: 'power2.in' },
+            { scale: 0.99, duration: 1, ease: 'power1.in' },
             0,
           )
         }
