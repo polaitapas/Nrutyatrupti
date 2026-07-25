@@ -7,11 +7,12 @@ import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/A
 import { galleryImages, type GalleryCategory } from '@/lib/data/gallery'
 import { useScrollLock } from '@/lib/overlayLock'
 
-type Bucket = 'all' | 'class' | 'stage' | 'recognition' | 'founder'
+type Bucket = 'all' | 'class' | 'summer' | 'stage' | 'recognition' | 'founder'
 
 const categories: { value: Bucket; label: string }[] = [
   { value: 'all', label: 'All' },
   { value: 'class', label: 'Class' },
+  { value: 'summer', label: 'Summer Classes' },
   { value: 'stage', label: 'On Stage' },
   { value: 'recognition', label: 'Recognition' },
   { value: 'founder', label: 'Founder & Guru' },
@@ -21,6 +22,8 @@ const bucketOf = (category: GalleryCategory): Bucket => {
   switch (category) {
     case 'students':
       return 'class'
+    case 'summer':
+      return 'summer'
     case 'performance':
     case 'folk':
       return 'stage'

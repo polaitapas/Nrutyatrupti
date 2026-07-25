@@ -140,11 +140,22 @@ export default function AboutPage() {
                 </h2>
               </AnimateIn>
               <AnimateIn delay={0.15}>
-                <p className="mt-5 font-body text-ivory/60 leading-relaxed max-w-lg text-base">
-                  {gurushreeData.bio}
-                </p>
+                <div className="mt-5 space-y-4 font-body text-ivory/60 leading-relaxed max-w-lg text-base">
+                  <p>{gurushreeData.shortBio}</p>
+                  <p>{gurushreeData.performanceBio}</p>
+                </div>
               </AnimateIn>
               <AnimateIn delay={0.25}>
+                <ul className="mt-6 space-y-3" role="list">
+                  {gurushreeData.credentials.map((cred) => (
+                    <li key={cred} className="flex items-start gap-3">
+                      <Award size={14} className="mt-1 flex-shrink-0" style={{ color: 'var(--gold)' }} aria-hidden="true" />
+                      <span className="font-body text-sm leading-relaxed text-ivory/70">{cred}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AnimateIn>
+              <AnimateIn delay={0.3}>
                 <span
                   className="mt-6 inline-flex items-center gap-2 text-xs font-body px-3 py-1.5"
                   style={{
@@ -154,11 +165,32 @@ export default function AboutPage() {
                   }}
                 >
                   <Award size={11} aria-hidden="true" />
-                  Deba Prasad Das Lineage
+                  Deba Prasad Das Lineage · Disciple of Guru Sri Durga Charan Ranbir
                 </span>
               </AnimateIn>
             </div>
           </div>
+
+          <AnimateIn delay={0.2}>
+            <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {gurushreeData.highlights.map((h) => (
+                <div
+                  key={h.description}
+                  className="p-5 text-center card-lift-sm"
+                  style={{
+                    border: '1px solid rgba(201,147,58,0.2)',
+                    background: 'rgba(201,147,58,0.06)',
+                    clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)',
+                  }}
+                >
+                  <div className="font-display text-3xl font-light" style={{ color: 'var(--gold)' }}>
+                    {h.label}
+                  </div>
+                  <div className="text-xs font-body leading-snug mt-1.5 text-ivory/55">{h.description}</div>
+                </div>
+              ))}
+            </div>
+          </AnimateIn>
         </div>
       </section>
 
@@ -225,6 +257,20 @@ export default function AboutPage() {
                     </li>
                   ))}
                 </ul>
+              </AnimateIn>
+
+              <AnimateIn delay={0.28}>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 text-xs font-body px-3 py-1.5"
+                  style={{
+                    border: '1px solid rgba(201,147,58,0.45)',
+                    color: 'var(--gold-dark)',
+                    background: 'rgba(201,147,58,0.1)',
+                  }}
+                >
+                  <Award size={11} aria-hidden="true" />
+                  Deba Prasad Das Lineage · Disciple of Guru Smt. Swayam Pragnya Sahoo
+                </span>
               </AnimateIn>
 
               <AnimateIn delay={0.3}>

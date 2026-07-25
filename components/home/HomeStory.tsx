@@ -1,7 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
 import StoryScroller, { StorySection } from '@/components/ui/StoryScroller'
-import TempleBorder from '@/components/ui/TempleBorder'
 
 const FounderHighlight = dynamic(() => import('./FounderHighlight'))
 const StudentTransformation = dynamic(() => import('./StudentTransformation'))
@@ -17,8 +16,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'scale', 'imageReveal']}
         bg="transparent"
-        topBorder={<TempleBorder variant="ivory" position="top" />}
-        bottomBorder={<TempleBorder variant="maroon" position="bottom" />}
       >
         <FounderHighlight />
       </StorySection>
@@ -26,7 +23,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'scale', 'blur']}
         bg="transparent"
-        topBorder={<TempleBorder variant="teal" position="top" />}
       >
         <StudentTransformation />
       </StorySection>
@@ -34,7 +30,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade']}
         bg="transparent"
-        bottomBorder={<TempleBorder variant="teal" position="bottom" />}
       >
         <StatsSection />
       </StorySection>
@@ -49,7 +44,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'parallax']}
         bg="transparent"
-        bottomBorder={<TempleBorder variant="ivory" position="bottom" />}
       >
         <InstagramReels />
       </StorySection>
@@ -57,8 +51,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'scale', 'imageReveal']}
         bg="transparent"
-        topBorder={<TempleBorder variant="ivory" position="top" />}
-        bottomBorder={<TempleBorder variant="ivory" position="bottom" />}
       >
         <ClassStyles />
       </StorySection>
@@ -66,8 +58,6 @@ export default function HomeStory() {
       <StorySection
         effects={['fade', 'blur']}
         bg="transparent"
-        topBorder={<TempleBorder variant="gold" position="top" />}
-        bottomBorder={<TempleBorder variant="gold" position="bottom" />}
       >
         <FAQTeaser />
       </StorySection>

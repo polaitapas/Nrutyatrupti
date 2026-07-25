@@ -83,21 +83,33 @@ export default function InstagramReels() {
                   <button
                     type="button"
                     onClick={loadEmbeds}
-                    className="flex flex-col items-center justify-center gap-3 w-full h-full p-6 text-center transition-colors hover:text-maroon"
-                    style={{ color: 'var(--brown)', background: 'rgba(14,75,65,0.04)' }}
+                    className="group/reel flex flex-col items-center justify-center gap-3 w-full h-full p-6 text-center relative overflow-hidden"
                     aria-label={`Load and watch reel: ${reel.caption}`}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={reel.poster}
+                      alt=""
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/reel:scale-105"
+                      aria-hidden="true"
+                    />
+                    {/* Legibility scrim over the poster */}
                     <span
-                      className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'var(--teal)' }}
+                      className="absolute inset-0"
+                      style={{ background: 'linear-gradient(to top, rgba(10,51,44,0.85) 0%, rgba(10,51,44,0.45) 55%, rgba(10,51,44,0.35) 100%)' }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="relative w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover/reel:scale-110"
+                      style={{ background: 'var(--gold)', boxShadow: '0 4px 20px rgba(0,0,0,0.35)' }}
                       aria-hidden="true"
                     >
-                      <Play size={20} className="text-ivory ml-0.5" fill="currentColor" />
+                      <Play size={20} className="text-dark ml-0.5" fill="currentColor" />
                     </span>
-                    <span className="text-sm font-body">{reel.caption}</span>
+                    <span className="relative text-sm font-body text-ivory">{reel.caption}</span>
                     <span
-                      className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase font-body"
-                      style={{ color: 'var(--teal)' }}
+                      className="relative inline-flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase font-body text-ivory/80"
                     >
                       <Instagram size={12} aria-hidden="true" />
                       Tap to load reel

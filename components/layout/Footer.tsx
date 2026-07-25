@@ -34,11 +34,8 @@ export default function Footer() {
                   />
                 </div>
                 <div>
-                  <div
-                    className="font-display text-ivory font-light"
-                    style={{ fontSize: '1.5rem' }}
-                  >
-                    Nrutyatrupti
+                  <div className="wordmark" style={{ fontSize: '2rem' }}>
+                    NrutyaTrupti
                   </div>
                   <div className="text-[10px] tracking-[0.2em] uppercase text-gold/60 font-body">
                     Odissi Dance Academy
@@ -93,7 +90,7 @@ export default function Footer() {
                 ))}
                 <li>
                   <EnquiryTrigger className="font-body text-sm text-ivory/50 hover:text-ivory transition-colors">
-                    Enquire Now
+                    Contact Us
                   </EnquiryTrigger>
                 </li>
               </ul>

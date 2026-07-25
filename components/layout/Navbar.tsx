@@ -70,11 +70,8 @@ export default function Navbar() {
               />
             </div>
             <div>
-              <div
-                className="font-display font-light"
-                style={{ fontSize: '1.3rem', color: 'var(--dark-warm)' }}
-              >
-                Nrutyatrupti
+              <div className="wordmark" style={{ fontSize: '1.85rem' }}>
+                NrutyaTrupti
               </div>
               <div className="text-[10px] tracking-[0.2em] uppercase text-gold-dark/70 font-body hidden sm:block">
                 Odissi Dance Academy
@@ -115,10 +112,10 @@ export default function Navbar() {
               type="button"
               onClick={openEnquiry}
               className="btn-primary text-xs py-3 px-6"
-              aria-label="Open enquiry form"
+              aria-label="Open contact form"
             >
               <Phone size={14} aria-hidden="true" />
-              Enquire Now
+              Contact Us
             </button>
           </div>
 
@@ -200,7 +197,7 @@ export default function Navbar() {
                   className="btn-primary w-full justify-center text-sm"
                 >
                   <Phone size={15} aria-hidden="true" />
-                  Enquire Now
+                  Contact Us
                 </button>
                 <p className="text-center text-xs text-ivory/40 font-body">
                   {siteConfig.address.city}, {siteConfig.address.state}

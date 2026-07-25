@@ -3,7 +3,7 @@ import { Clock, Users, Globe, ChevronDown, Star, Award, Calendar } from 'lucide-
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import EnquiryTrigger from '@/components/ui/EnquiryTrigger'
 import StatsSection from '@/components/home/StatsSection'
-import { danceStyles, batches, faqs } from '@/lib/data/classes'
+import { danceStyles, batches, faqs, summerIntensive } from '@/lib/data/classes'
 import { achievementTimeline, featuredHonours } from '@/lib/data/achievements'
 
 const honourIcons = { Star, Award }
@@ -82,7 +82,7 @@ export default function ClassesPage() {
                     >
                       {style.tag}
                     </span>
-                    <span className="font-display italic text-3xl opacity-10" style={{ color: 'var(--dark-warm)' }}>
+                    <span className="font-display italic text-3xl" style={{ color: 'var(--maroon)', opacity: 0.45 }}>
                       {style.odia}
                     </span>
                   </div>
@@ -161,6 +161,62 @@ export default function ClassesPage() {
                 <span style={{ color: 'var(--maroon)' }}>Send an enquiry</span>
               </EnquiryTrigger>{' '}
               for current batch availability.
+            </p>
+          </AnimateIn>
+        </div>
+      </section>
+
+      <section
+        id="summer-intensive"
+        className="py-section bg-heritage-deep-alt scroll-mt-24"
+        aria-label="Summer intensive course"
+      >
+        <div className="wrap relative z-10">
+          <AnimateIn className="max-w-2xl">
+            <span className="eyebrow eyebrow-gold">Summer Special · {summerIntensive.duration}</span>
+            <h2 className="section-title mt-3 text-ivory">
+              The <em style={{ color: 'var(--gold)' }}>Summer Intensive</em>
+            </h2>
+            <p className="lede mt-4 text-ivory/55">
+              A focused 15-day course held during the school holidays —
+              open to students of all levels, covering everything from expression to stagecraft.
+            </p>
+          </AnimateIn>
+
+          <AnimateStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8" staggerDelay={0.05}>
+            {summerIntensive.curriculum.map((item) => (
+              <AnimateStaggerItem key={item.title}>
+                <div
+                  className="p-7 h-full flex flex-col card-lift-sm"
+                  style={{
+                    border: '1px solid rgba(201,147,58,0.25)',
+                    background: 'rgba(201,147,58,0.06)',
+                    clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)',
+                  }}
+                >
+                  <span className="font-display italic text-2xl mb-3" style={{ color: 'var(--gold)', opacity: 0.65 }}>
+                    {item.odia}
+                  </span>
+                  <h3 className="font-display font-light text-lg mb-2 text-ivory">{item.title}</h3>
+                  <p className="font-body text-sm leading-relaxed text-ivory/55">{item.description}</p>
+                </div>
+              </AnimateStaggerItem>
+            ))}
+          </AnimateStagger>
+
+          <AnimateIn delay={0.3} className="mt-8 max-w-2xl">
+            <div
+              className="p-6 flex items-start gap-4"
+              style={{ border: '1px solid rgba(201,147,58,0.3)', background: 'rgba(201,147,58,0.1)' }}
+            >
+              <Star size={16} className="flex-shrink-0 mt-1" style={{ color: 'var(--gold)', fill: 'var(--gold)' }} aria-hidden="true" />
+              <p className="font-body text-sm leading-relaxed text-ivory/80">{summerIntensive.culmination}</p>
+            </div>
+            <p className="mt-6 font-body text-sm text-ivory/55">
+              <EnquiryTrigger className="underline underline-offset-2">
+                <span style={{ color: 'var(--gold)' }}>Enquire about the Summer Intensive</span>
+              </EnquiryTrigger>{' '}
+              for upcoming dates and availability.
             </p>
           </AnimateIn>
         </div>

@@ -28,9 +28,7 @@ export function useEnquiry() {
   return ctx
 }
 
-const POPUP_FIRST_MS = 60000
-const POPUP_STEP_MS = 30000
-const POPUP_MAX_MS = 180000
+const POPUP_FIRST_MS = 90000
 
 type FormState = {
   name: string
@@ -72,20 +70,14 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
 
   const open = useCallback(() => setIsOpen(true), [])
 
-  // Marketing nudge: first popup at 60s, then each subsequent popup waits
-  // 30s longer (90s, 120s, …) up to a cap of 180s. Stops after conversion.
+  // Marketing nudge: one gentle popup after 90s of browsing, then never
+  // again this session — it should invite, not pester. Suppressed if the
+  // visitor already opened an overlay, and never fires after conversion.
   useEffect(() => {
     if (submitted) return
-    let timer: ReturnType<typeof setTimeout>
-    let delay = POPUP_FIRST_MS
-    const schedule = () => {
-      timer = setTimeout(() => {
-        if (!isOpenRef.current && !isOverlayOpen()) setIsOpen(true)
-        delay = Math.min(delay + POPUP_STEP_MS, POPUP_MAX_MS)
-        schedule()
-      }, delay)
-    }
-    schedule()
+    const timer = setTimeout(() => {
+      if (!isOpenRef.current && !isOverlayOpen()) setIsOpen(true)
+    }, POPUP_FIRST_MS)
     return () => clearTimeout(timer)
   }, [submitted])
 
@@ -166,18 +158,19 @@ export default function EnquiryProvider({ children }: { children: ReactNode }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             onClick={close}
           >
             <motion.div
-              className="relative w-full max-w-md max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-md max-h-[90vh] overflow-y-auto no-scrollbar"
               style={{
                 background: 'var(--ivory)',
                 clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%)',
               }}
-              initial={{ opacity: 0, scale: 0.94, y: 16 }}
+              initial={{ opacity: 0, scale: 0.97, y: 32 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 16 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.97, y: 24 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
               <button
