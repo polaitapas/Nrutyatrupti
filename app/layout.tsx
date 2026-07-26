@@ -108,6 +108,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* Fixed full-viewport background — the dancer stays put while content scrolls over it */}
         <div className="site-bg" aria-hidden="true" />
+        {/* Slim animated heritage ribbons framing the site on desktop */}
+        <div className="side-ribbon side-ribbon--left hidden lg:block" aria-hidden="true" />
+        <div className="side-ribbon side-ribbon--right hidden lg:block" aria-hidden="true" />
         <div className="page-loader" suppressHydrationWarning>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo.png" alt="" width={80} height={80} />

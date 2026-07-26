@@ -23,24 +23,14 @@ export default function Footer() {
         <div className="wrap py-12 lg:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-2">
-              <Link href="/" className="flex items-center gap-3 mb-6 group w-fit">
-                <div className="relative w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity flex-shrink-0">
-                  <Image
-                    src="/images/logo.png"
-                    alt="Nrutyatrupti logo"
-                    fill
-                    sizes="64px"
-                    className="object-contain"
-                  />
-                </div>
-                <div>
-                  <div className="wordmark" style={{ fontSize: '2rem' }}>
-                    NrutyaTrupti
-                  </div>
-                  <div className="text-[10px] tracking-[0.2em] uppercase text-gold/60 font-body">
-                    Odissi Dance Academy
-                  </div>
-                </div>
+              <Link href="/" className="flex items-center mb-6 group w-fit">
+                <Image
+                  src="/images/logo-lockup.png"
+                  alt="Nrutyatrupti Odissi Dance Academy"
+                  width={702}
+                  height={222}
+                  className="h-16 lg:h-[4.75rem] w-auto opacity-95 group-hover:opacity-100 transition-opacity"
+                />
               </Link>
               <p className="font-body text-ivory/50 text-sm leading-relaxed max-w-xs mb-6">
                 {siteConfig.tagline}. A sanctuary for the timeless art of Odisha — classical dance
@@ -115,6 +105,7 @@ export default function Footer() {
                       aria-hidden="true"
                     />
                     <span className="font-body text-sm text-ivory/50 group-hover:text-ivory/70 transition-colors leading-relaxed">
+                      <span className="block text-ivory/80 font-medium">{siteConfig.fullName}</span>
                       {siteConfig.address.full}
                     </span>
                   </a>

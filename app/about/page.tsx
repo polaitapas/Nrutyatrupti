@@ -26,14 +26,13 @@ export default function AboutPage() {
   return (
     <>
       <section
-        className="relative pt-24 pb-14 overflow-hidden bg-heritage-deep"
+        className="relative pt-40 pb-14 overflow-hidden bg-heritage-deep"
         aria-label="About page header"
       >
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow eyebrow-gold"><span className="indic">ଆମ କାହାଣୀ</span> · Our Story</span>
             <h1
-              className="font-display font-light text-ivory mt-4 leading-none"
+              className="font-display font-light text-ivory leading-none"
               style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '-0.02em' }}
             >
               A sanctuary for the
@@ -341,7 +340,7 @@ export default function AboutPage() {
       <section className="py-section bg-heritage-light" aria-label="Our pillars">
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow"><span className="indic">ଆମ ସ୍ତମ୍ଭ</span> · What We Stand For</span>
+            <span className="eyebrow">What We Stand For</span>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
               Our <em>pillars</em>
             </h2>

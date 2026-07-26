@@ -29,14 +29,13 @@ export default function ClassesPage() {
   return (
     <>
       <section
-        className="relative pt-24 pb-14 overflow-hidden bg-heritage-deep-alt"
+        className="relative pt-40 pb-14 overflow-hidden bg-heritage-deep-alt"
         aria-label="Classes header"
       >
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow eyebrow-gold"><span className="indic">ପାଠ୍ୟକ୍ରମ</span> · The Curriculum</span>
             <h1
-              className="font-display font-light text-ivory mt-4 leading-none"
+              className="font-display font-light text-ivory leading-none"
               style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '-0.02em' }}
             >
               Classes, Achievements
@@ -59,7 +58,7 @@ export default function ClassesPage() {
       >
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow"><span className="indic">ଆମେ କ'ଣ ଶିଖାଉ</span> · What We Teach</span>
+            <span className="eyebrow">What We Teach</span>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
               The forms of <em>our soil</em>
             </h2>
@@ -112,7 +111,7 @@ export default function ClassesPage() {
       >
         <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow"><span className="indic">ବ୍ୟାଚ ସମୟ</span> · Batch Timings</span>
+            <span className="eyebrow">Batch Timings</span>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>
               When do <em>classes run?</em>
             </h2>
