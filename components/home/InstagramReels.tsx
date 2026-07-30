@@ -1,21 +1,8 @@
-﻿'use client'
-import { useState } from 'react'
-import { Instagram, ExternalLink, Play } from 'lucide-react'
+﻿import { Instagram, ExternalLink, Play } from 'lucide-react'
 import AnimateIn, { AnimateStagger, AnimateStaggerItem } from '@/components/ui/AnimateIn'
 import { siteConfig } from '@/lib/data/site'
 
 export default function InstagramReels() {
-  const [loaded, setLoaded] = useState(false)
-
-  const loadEmbeds = () => {
-    if (loaded) return
-    setLoaded(true)
-    const script = document.createElement('script')
-    script.src = 'https://www.instagram.com/embed.js'
-    script.async = true
-    document.body.appendChild(script)
-  }
-
   return (
     <section
       className="relative overflow-hidden py-section bg-heritage-light"
@@ -46,76 +33,49 @@ export default function InstagramReels() {
             <AnimateStaggerItem key={reel.id} variant="fadeUp">
               <div className="card-lift-sm">
               <div
-                className="instagram-embed-square overflow-hidden relative"
+                className="overflow-hidden relative"
                 style={{
                   aspectRatio: '1 / 1',
                   border: '1px solid rgba(14,75,65,0.15)',
                   clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)',
                 }}
               >
-                {loaded ? (
-                  <blockquote
-                    className="instagram-media"
-                    data-instgrm-captioned
-                    data-instgrm-permalink={`${reel.url}?utm_source=ig_embed`}
-                    data-instgrm-version="14"
-                    style={{
-                      background: 'transparent',
-                      border: 0,
-                      margin: 0,
-                      padding: 0,
-                      width: '100%',
-                      minWidth: '100%',
-                    }}
+                <a
+                  href={reel.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/reel flex flex-col items-center justify-center gap-3 w-full h-full p-6 text-center relative overflow-hidden"
+                  aria-label={`Watch on Instagram: ${reel.caption}`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={reel.poster}
+                    alt=""
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/reel:scale-105"
+                    aria-hidden="true"
+                  />
+                  {/* Legibility scrim over the poster */}
+                  <span
+                    className="absolute inset-0"
+                    style={{ background: 'linear-gradient(to top, rgba(10,51,44,0.85) 0%, rgba(10,51,44,0.45) 55%, rgba(10,51,44,0.35) 100%)' }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="relative w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover/reel:scale-110"
+                    style={{ background: 'var(--gold)', boxShadow: '0 4px 20px rgba(0,0,0,0.35)' }}
+                    aria-hidden="true"
                   >
-                    <a
-                      href={reel.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block p-6 text-sm font-body transition-colors hover:text-maroon"
-                      style={{ color: 'var(--brown)' }}
-                    >
-                      <Instagram size={20} className="mb-2" style={{ color: 'var(--teal)' }} aria-hidden="true" />
-                      {reel.caption}
-                    </a>
-                  </blockquote>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={loadEmbeds}
-                    className="group/reel flex flex-col items-center justify-center gap-3 w-full h-full p-6 text-center relative overflow-hidden"
-                    aria-label={`Load and watch reel: ${reel.caption}`}
+                    <Play size={20} className="text-dark ml-0.5" fill="currentColor" />
+                  </span>
+                  <span className="relative text-sm font-body text-ivory">{reel.caption}</span>
+                  <span
+                    className="relative inline-flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase font-body text-ivory/80"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={reel.poster}
-                      alt=""
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/reel:scale-105"
-                      aria-hidden="true"
-                    />
-                    {/* Legibility scrim over the poster */}
-                    <span
-                      className="absolute inset-0"
-                      style={{ background: 'linear-gradient(to top, rgba(10,51,44,0.85) 0%, rgba(10,51,44,0.45) 55%, rgba(10,51,44,0.35) 100%)' }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="relative w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover/reel:scale-110"
-                      style={{ background: 'var(--gold)', boxShadow: '0 4px 20px rgba(0,0,0,0.35)' }}
-                      aria-hidden="true"
-                    >
-                      <Play size={20} className="text-dark ml-0.5" fill="currentColor" />
-                    </span>
-                    <span className="relative text-sm font-body text-ivory">{reel.caption}</span>
-                    <span
-                      className="relative inline-flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase font-body text-ivory/80"
-                    >
-                      <Instagram size={12} aria-hidden="true" />
-                      Tap to load reel
-                    </span>
-                  </button>
-                )}
+                    <Instagram size={12} aria-hidden="true" />
+                    Watch on Instagram
+                  </span>
+                </a>
               </div>
               </div>
             </AnimateStaggerItem>

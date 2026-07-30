@@ -25,11 +25,11 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <Link href="/" className="flex items-center mb-6 group w-fit">
                 <Image
-                  src="/images/logo-lockup.png"
+                  src="/images/logo-lockup-dark.png"
                   alt="Nrutyatrupti Odissi Dance Academy"
-                  width={702}
-                  height={222}
-                  className="h-16 lg:h-[4.75rem] w-auto opacity-95 group-hover:opacity-100 transition-opacity"
+                  width={1667}
+                  height={492}
+                  className="h-14 lg:h-16 w-auto opacity-95 group-hover:opacity-100 transition-opacity"
                 />
               </Link>
               <p className="font-body text-ivory/50 text-sm leading-relaxed max-w-xs mb-6">

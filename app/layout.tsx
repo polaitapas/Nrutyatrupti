@@ -57,6 +57,7 @@ const structuredData = {
   name: siteConfig.fullName,
   description: siteConfig.description,
   url: siteConfig.seo.url,
+  image: `${siteConfig.seo.url}${siteConfig.seo.ogImage}`,
   telephone: siteConfig.phone,
   email: siteConfig.email,
   foundingDate: siteConfig.founded,
