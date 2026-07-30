@@ -26,7 +26,7 @@ export const siteConfig = {
     facebook: 'https://www.facebook.com/nrutya.trupti',
   },
   seo: {
-    url: 'https://nrutyatrupti.netlify.app',
+    url: 'https://nrutyatrupti.com',
     ogImage: '/images/og-image.jpg',
     keywords:
       'Odissi dance classes Bhubaneswar, classical dance academy Bhubaneswar, Odissi dance training Odisha, Odia folk dance Bhubaneswar, Nrutyatrupti, Guru Truptismita Tarini',
