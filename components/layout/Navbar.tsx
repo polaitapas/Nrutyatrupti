@@ -46,37 +46,27 @@ export default function Navbar() {
       />
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-shadow duration-500 glass-light',
-          scrolled && 'shadow-sm'
+          'fixed top-0 left-0 right-0 z-50 nav-shell',
+          scrolled ? 'nav-shell--scrolled' : 'nav-shell--top'
         )}
       >
         <nav
-          className="nav-wrap flex items-center justify-between py-4 lg:py-5"
+          className="wrap flex items-center justify-between py-4 lg:py-5"
           aria-label="Main navigation"
         >
           <Link
             href="/"
-            className="flex items-center gap-3 group"
-            aria-label="Nrutyatrupti — home"
+            className="flex items-center group"
+            aria-label="Nrutyatrupti Odissi Dance Academy — home"
           >
-            <div className="relative w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity flex-shrink-0">
-              <Image
-                src="/images/logo.png"
-                alt="Nrutyatrupti logo"
-                fill
-                sizes="64px"
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div>
-              <div className="wordmark" style={{ fontSize: '1.85rem' }}>
-                NrutyaTrupti
-              </div>
-              <div className="text-[10px] tracking-[0.2em] uppercase text-gold-dark/70 font-body hidden sm:block">
-                Odissi Dance Academy
-              </div>
-            </div>
+            <Image
+              src="/images/logo-lockup.png"
+              alt="Nrutyatrupti Odissi Dance Academy"
+              width={702}
+              height={222}
+              className="h-12 sm:h-14 lg:h-[4.25rem] w-auto opacity-95 group-hover:opacity-100 transition-opacity"
+              priority
+            />
           </Link>
 
           <ul className="hidden lg:flex items-center gap-1" role="list">

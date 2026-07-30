@@ -27,9 +27,7 @@ export default function FounderHighlight() {
       <div className="wrap relative z-10">
         <div className="text-center mb-10">
           <AnimateIn>
-            <span className="eyebrow">
-              <span className="indic">गुरु परम्परा</span> · Guided by Masters
-            </span>
+            <span className="eyebrow">Guided by Masters</span>
           </AnimateIn>
           <AnimateIn delay={0.15}>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>

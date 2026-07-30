@@ -42,6 +42,48 @@ export default function GalleryClient() {
   const lightboxRef = useRef<HTMLDivElement>(null)
   const lastTriggerRef = useRef<HTMLElement | null>(null)
 
+  // Cursor-following illumination on gallery tiles (desktop / fine pointer only).
+  const [finePointer, setFinePointer] = useState(false)
+  const glowRaf = useRef<number | null>(null)
+  const glowPending = useRef<{ el: HTMLElement; cx: number; cy: number } | null>(null)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setFinePointer(mq.matches && !reduce.matches)
+    update()
+    mq.addEventListener('change', update)
+    reduce.addEventListener('change', update)
+    return () => {
+      mq.removeEventListener('change', update)
+      reduce.removeEventListener('change', update)
+    }
+  }, [])
+
+  const handleTileMove = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      if (!finePointer) return
+      glowPending.current = { el: e.currentTarget, cx: e.clientX, cy: e.clientY }
+      if (glowRaf.current == null) {
+        glowRaf.current = requestAnimationFrame(() => {
+          const p = glowPending.current
+          if (p) {
+            // One layout read + write per frame, kept off the mousemove path.
+            const r = p.el.getBoundingClientRect()
+            p.el.style.setProperty('--gx', `${((p.cx - r.left) / r.width) * 100}%`)
+            p.el.style.setProperty('--gy', `${((p.cy - r.top) / r.height) * 100}%`)
+          }
+          glowRaf.current = null
+        })
+      }
+    },
+    [finePointer]
+  )
+
+  useEffect(() => () => {
+    if (glowRaf.current != null) cancelAnimationFrame(glowRaf.current)
+  }, [])
+
   const filtered = active === 'all' ? galleryImages : galleryImages.filter((g) => bucketOf(g.category) === active)
 
   useScrollLock(lightbox !== null)
@@ -101,21 +143,20 @@ export default function GalleryClient() {
   return (
     <>
       <section
-        className="pt-24 pb-12 relative bg-heritage-deep"
+        className="pt-40 pb-12 relative bg-heritage-deep"
         aria-label="Gallery header"
       >
-        <div className="wrap relative z-10 text-center">
+        <div className="wrap relative z-10">
           <AnimateIn>
-            <span className="eyebrow eyebrow-gold justify-center"><span className="indic">ସ୍ମୃତି</span> · Moments in Motion</span>
             <h1
-              className="font-display font-light text-ivory mt-4"
+              className="font-display font-light text-ivory"
               style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '-0.02em', lineHeight: 1 }}
             >
               Visit &amp; <em style={{ color: 'var(--gold)' }}>Explore</em>
             </h1>
           </AnimateIn>
           <AnimateIn delay={0.2}>
-            <p className="lede mt-4 mx-auto text-center text-ivory/55">
+            <p className="lede mt-4 text-ivory/55">
               From the studio floor to national stages — every image a moment of devotion.
               Enquire below to begin your own.
             </p>
@@ -157,6 +198,7 @@ export default function GalleryClient() {
                 <button
                   className="block w-full mb-4 relative overflow-hidden group cursor-pointer text-left card-lift-sm"
                   onClick={() => openLightbox(i)}
+                  onMouseMove={handleTileMove}
                   aria-label={`Open photo: ${img.caption}`}
                   style={{ clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%)' }}
                 >
@@ -172,6 +214,10 @@ export default function GalleryClient() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="gallery-tile__glow" aria-hidden="true" />
+                    <div className="gallery-tile__caption">
+                      <span className="font-body text-xs tracking-wide text-ivory">{img.caption}</span>
+                    </div>
                   </div>
                 </button>
               </AnimateStaggerItem>

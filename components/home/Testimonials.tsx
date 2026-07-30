@@ -13,7 +13,7 @@ export default function Testimonials() {
       <div className="wrap relative z-10">
         <div className="text-center mb-8">
           <AnimateIn>
-            <span className="eyebrow justify-center"><span className="indic">ସେମାନଙ୍କ କଥାରେ</span> · In Their Words</span>
+            <span className="eyebrow justify-center">In Their Words</span>
           </AnimateIn>
           <AnimateIn delay={0.15}>
             <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>

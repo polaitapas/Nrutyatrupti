@@ -15,7 +15,7 @@ export default function ClassStyles() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div>
             <AnimateIn>
-              <span className="eyebrow"><span className="indic">ଆମେ କ'ଣ ଶିଖାଉ</span> · What We Teach</span>
+              <span className="eyebrow">What We Teach</span>
             </AnimateIn>
             <AnimateIn delay={0.15}>
               <h2 className="section-title mt-3" style={{ color: 'var(--dark-warm)' }}>

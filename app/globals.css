@@ -89,10 +89,6 @@ textarea:focus-visible {
     @apply max-w-wrap mx-auto px-6 sm:px-8 lg:px-16 xl:px-20;
   }
 
-  .nav-wrap {
-    @apply max-w-5xl mx-auto px-6 sm:px-8 lg:px-10;
-  }
-
   .eyebrow {
     @apply inline-flex items-center text-xs font-body font-semibold tracking-[0.28em] uppercase;
     color: var(--teal);
@@ -194,6 +190,52 @@ textarea:focus-visible {
   }
 }
 
+/* Premium CTA polish — a restrained specular sweep + inner top sheen so the
+   Sindoor primary reads as polished lacquer and the outline as warm glass.
+   Uses ::before (paints between the button fill and its label) with a GPU
+   transform only. The button's clip-path keeps the sweep inside the chamfer. */
+.btn-primary,
+.btn-outline,
+.btn-outline-light {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-primary {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.btn-primary::before,
+.btn-outline::before,
+.btn-outline-light::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  transform: translateX(-240%) skewX(-16deg);
+  transition: transform 720ms var(--ease-premium);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.btn-primary::before {
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.btn-outline::before,
+.btn-outline-light::before {
+  background: linear-gradient(100deg, transparent, rgba(228, 192, 106, 0.5), transparent);
+}
+
+.btn-primary:hover::before,
+.btn-outline:hover::before,
+.btn-outline-light:hover::before {
+  transform: translateX(360%) skewX(-16deg);
+}
+
 .card-lift {
   transition: transform 260ms var(--ease-premium), box-shadow 260ms var(--ease-premium), border-color 260ms var(--ease-premium);
   will-change: transform;
@@ -230,6 +272,54 @@ textarea:focus-visible {
   transition-duration: 100ms;
 }
 
+/* Gallery tile — a soft cursor-following illumination that glides across the
+   photograph on desktop (pointer position fed in via --gx/--gy from a
+   rAF-throttled handler). Screen blend keeps it a gentle highlight, never a
+   magnifier. Disabled on touch and under reduced-motion. */
+.gallery-tile__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms var(--ease-premium);
+  background: radial-gradient(
+    200px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 244, 218, 0.2),
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+}
+
+.group:hover > .relative > .gallery-tile__glow {
+  opacity: 1;
+}
+
+.gallery-tile__caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 0.9rem 1rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 300ms var(--ease-premium), transform 300ms var(--ease-premium);
+}
+
+.group:hover > .relative > .gallery-tile__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Touch: no cursor glow, and captions stay hover-gated (tap opens the
+   lightbox), so tiles keep their clean image-only resting state on mobile. */
+@media (hover: none) {
+  .gallery-tile__glow {
+    display: none;
+  }
+}
+
 .img-zoom {
   overflow: hidden;
 }
@@ -240,6 +330,17 @@ textarea:focus-visible {
 
 .img-zoom:hover img {
   transform: scale(1.06);
+}
+
+/* Premium, accessible form focus — the fields set focus:outline-none, so
+   without this a valid focused field showed no indicator. An inset gold ring
+   works with the chamfered clip-path (an outer ring would be clipped away)
+   and reads clearly against the ivory fields for keyboard and mouse alike. */
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: inset 0 0 0 2px var(--gold);
+  transition: box-shadow 200ms var(--ease-premium);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -255,6 +356,20 @@ textarea:focus-visible {
   .card-lift-sm:active,
   .img-zoom:hover img {
     transform: none;
+  }
+
+  .btn-primary::before,
+  .btn-outline::before,
+  .btn-outline-light::before,
+  .btn-primary:hover::before,
+  .btn-outline:hover::before,
+  .btn-outline-light:hover::before {
+    transition: none;
+    opacity: 0;
+  }
+
+  .gallery-tile__glow {
+    display: none;
   }
 }
 
@@ -314,7 +429,11 @@ textarea:focus-visible {
 .bg-heritage-deep {
   position: relative;
   background-color: rgba(10, 51, 44, 0.96);
+  /* Restrained ambient depth: a warm turmeric glow and a faint sindoor pool,
+     both very low opacity and static — depth, not decoration. */
   background-image:
+    radial-gradient(120% 85% at 12% 0%, rgba(201, 147, 58, 0.1), transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, rgba(166, 48, 59, 0.08), transparent 55%),
     url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L32 2 30 4 28 2z' fill='%23C9933A' opacity='0.06'/%3E%3Cpath d='M0 30L2 32 0 34' fill='%23FAF6EF' opacity='0.02'/%3E%3C/svg%3E");
 }
 
@@ -322,6 +441,8 @@ textarea:focus-visible {
   position: relative;
   background-color: rgba(10, 51, 44, 0.96);
   background-image:
+    radial-gradient(110% 80% at 85% 5%, rgba(201, 147, 58, 0.09), transparent 58%),
+    radial-gradient(90% 70% at 0% 100%, rgba(23, 104, 90, 0.1), transparent 55%),
     url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L32 2 30 4 28 2z' fill='%23C9933A' opacity='0.06'/%3E%3C/svg%3E");
 }
 
@@ -336,44 +457,8 @@ textarea:focus-visible {
   position: relative;
   background-color: rgba(7, 30, 26, 0.96);
   background-image:
+    radial-gradient(90% 120% at 50% 0%, rgba(201, 147, 58, 0.07), transparent 55%),
     url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L42 2 40 4 38 2z' fill='%23C9933A' opacity='0.04'/%3E%3C/svg%3E");
-}
-
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin: 0 auto;
-  max-width: 200px;
-}
-
-.section-divider::before,
-.section-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.4;
-}
-
-.konark-dot {
-  width: 6px;
-  height: 6px;
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
-  flex-shrink: 0;
-}
-
-.gradient-dark {
-  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-warm) 100%);
-}
-
-.gradient-gold {
-  background: linear-gradient(135deg, #2C1A0E 0%, #1A1209 40%, #3D2810 100%);
-}
-
-.text-balance {
-  text-wrap: balance;
 }
 
 .faq-row summary {
@@ -423,6 +508,36 @@ textarea:focus-visible {
   border-bottom: 1px solid rgba(166, 48, 59, 0.1);
 }
 
+/* Navbar — warm crystal that settles into glass as the page scrolls.
+   At the top it stays calm and near-opaque; on scroll it turns to
+   translucent parchment with deeper blur, a gold hairline, a faint ivory
+   inner highlight and a soft layered shadow. Backdrop-filter is only a thin
+   strip here, so the cost is negligible. */
+.nav-shell {
+  transition:
+    background-color 450ms var(--ease-premium),
+    box-shadow 450ms var(--ease-premium),
+    border-color 450ms var(--ease-premium),
+    backdrop-filter 450ms var(--ease-premium);
+}
+
+.nav-shell--top {
+  background-color: rgba(250, 246, 239, 0.9);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  border-bottom: 1px solid rgba(166, 48, 59, 0.06);
+}
+
+.nav-shell--scrolled {
+  background-color: rgba(249, 244, 234, 0.74);
+  backdrop-filter: blur(24px) saturate(1.55);
+  -webkit-backdrop-filter: blur(24px) saturate(1.55);
+  border-bottom: 1px solid rgba(201, 147, 58, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 253, 248, 0.6),
+    0 10px 30px -14px rgba(13, 9, 6, 0.22);
+}
+
 /* Brand wordmark — Devanagari-styled Latin with the shirorekha (top bar),
    matching the red lettering in the logo. Cased as written in the markup
    (NrutyaTrupti), so no text-transform here. */
@@ -439,6 +554,50 @@ textarea:focus-visible {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   opacity: 0.3;
+}
+
+/* Side ribbons — slim heritage strips framing the site on desktop. A brand
+   gradient (sindoor → gold → teal) drifts very slowly along each edge; the
+   element is only a few px wide so the continuous animation costs nothing.
+   Hidden on mobile (every px of width matters there) and static under
+   reduced-motion. */
+.side-ribbon {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  z-index: 60;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--maroon) 0%,
+    var(--gold) 25%,
+    var(--teal) 50%,
+    var(--gold) 75%,
+    var(--maroon) 100%
+  );
+  background-size: 100% 400%;
+  animation: ribbon-flow 24s linear infinite;
+  opacity: 0.75;
+}
+
+.side-ribbon--left {
+  left: 0;
+}
+
+.side-ribbon--right {
+  right: 0;
+}
+
+@keyframes ribbon-flow {
+  from { background-position: 50% 0%; }
+  to { background-position: 50% 400%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-ribbon {
+    animation: none;
+  }
 }
 
 /* Google review badge highlight */
@@ -498,17 +657,6 @@ textarea:focus-visible {
 .card-lift-sm > * {
   position: relative;
   z-index: 1;
-}
-
-/* Force the Instagram oEmbed iframe to fill its square container instead of
-   the variable height Instagram's own script assigns inline. */
-.instagram-embed-square iframe.instagram-media {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-width: 100% !important;
 }
 
 /* Page loader */
